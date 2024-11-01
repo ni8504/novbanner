@@ -156,8 +156,12 @@
 
     const leafColors = ['#FF4500', '#FF6347', '#FFA500', '#FFD700', '#FF8C00'];
     const leafPaths = [
-      // Accurate Maple Leaf SVG path data
+      // Detailed Maple Leaf SVG path data
       'M50,5 C30,25 10,35 10,55 C10,70 30,80 50,95 C70,80 90,70 90,55 C90,35 70,25 50,5 Z',
+      // Oak Leaf SVG path data
+      'M50,0 C55,15 70,20 75,35 C80,50 65,60 60,75 C55,90 70,95 65,100 C60,105 50,100 50,100 C50,100 40,105 35,100 C30,95 45,90 40,75 C35,60 20,50 25,35 C30,20 45,15 50,0 Z',
+      // Birch Leaf SVG path data
+      'M50,0 C70,30 70,70 50,100 C30,70 30,30 50,0 Z',
     ];
 
     function createLeaf() {
@@ -165,11 +169,15 @@
       leaf.setAttribute('viewBox', '0 0 100 100');
       leaf.classList.add('leaf');
 
-      // Randomly select a leaf color
+      // Randomly select a leaf path and color
+      const pathData = leafPaths[Math.floor(Math.random() * leafPaths.length)];
       const color = leafColors[Math.floor(Math.random() * leafColors.length)];
 
+      const size = 60 + Math.random() * 40; // Leaf size between 60px and 100px
+      leaf.style.width = `${size}px`;
+
       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', leafPaths[0]); // Use the accurate maple leaf path
+      path.setAttribute('d', pathData);
       path.setAttribute('fill', color);
 
       leaf.appendChild(path);
