@@ -79,7 +79,7 @@
     /* Falling Leaves */
     .leaf {
       position: absolute;
-      top: -10%;
+      top: -10%; /* Start above the banner */
       width: 80px;
       opacity: 0.9;
       z-index: 1; /* Leaves are behind the text */
@@ -89,12 +89,10 @@
     /* Leaf Animation */
     @keyframes fall {
       0% {
-        transform: translateX(0) rotate(0deg);
-        top: -10%;
+        transform: translateY(0) translateX(0) rotate(0deg);
       }
       100% {
-        transform: translateX(100px) rotate(360deg);
-        top: calc(100% - 50px); /* Stack at the bottom */
+        transform: translateY(100vh) translateX(100px) rotate(360deg);
       }
     }
 
@@ -156,7 +154,7 @@
 
     const leafColors = ['#FF4500', '#FF6347', '#FFA500', '#FFD700', '#FF8C00'];
     const leafPaths = [
-      // Detailed Maple Leaf SVG path data
+      // Accurate Maple Leaf SVG path data
       'M50,5 C30,25 10,35 10,55 C10,70 30,80 50,95 C70,80 90,70 90,55 C90,35 70,25 50,5 Z',
       // Oak Leaf SVG path data
       'M50,0 C35,20 15,25 15,45 C15,60 35,65 50,100 C65,65 85,60 85,45 C85,25 65,20 50,0 Z',
@@ -167,7 +165,7 @@
     let stackHeight = 0; // Accumulated height of leaves at the bottom
     const maxStackHeight = 0.5 * window.innerHeight; // Maximum stack height (50% of viewport height)
     const leafOverlap = 20; // Overlap between leaves in pixels
-    
+
     function createLeaf() {
       const leaf = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       leaf.setAttribute('viewBox', '0 0 100 100');
@@ -179,6 +177,7 @@
 
       const size = 60 + Math.random() * 40; // Leaf size between 60px and 100px
       leaf.style.width = `${size}px`;
+      leaf.style.height = `${size}px`; // Set height explicitly
 
       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       path.setAttribute('d', pathData);
@@ -198,6 +197,10 @@
 
       // When the leaf lands
       setTimeout(() => {
+        // Remove animation and reset transform
+        leaf.style.animation = 'none';
+        leaf.style.transform = 'none';
+
         // Increment the stackHeight
         stackHeight += (size - leafOverlap);
 
@@ -207,9 +210,8 @@
         }
 
         // Adjust the leaf's position to stack
-        leaf.style.top = `calc(100% - ${stackHeight}px)`;
+        leaf.style.bottom = `${stackHeight}px`;
         leaf.style.position = 'absolute';
-        leaf.style.transform = `translateX(${100}px) rotate(${360}deg)`;
 
       }, (animationDuration + delay) * 1000);
     }
