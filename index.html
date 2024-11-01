@@ -95,7 +95,7 @@
         transform: rotate(0deg);
       }
       100% {
-        top: calc(100% - var(--stack-height));
+        top: var(--end-top);
         left: var(--end-left);
         transform: rotate(360deg);
       }
@@ -140,7 +140,7 @@
   <div class="banner-container">
     <!-- Background Image -->
     <img
-      src="https://yourwebsite.com/images/november-background.jpg"
+      src="https://www.fitclub.net/sites/ob-143.app.sitewright.io/files/image/2024-09/west%20weights2%20%281%29.JPG"
       alt="November Banner"
       class="banner-image"
     />
@@ -183,8 +183,16 @@
       leaf.style.setProperty('--start-left', `${startLeft}%`);
       leaf.style.setProperty('--end-left', `${endLeft}%`);
 
-      // Set stack height for animation
-      leaf.style.setProperty('--stack-height', `${stackHeight}px`);
+      // Increment the stackHeight before the animation starts
+      stackHeight += (size - leafOverlap);
+
+      // Limit the stackHeight to maxStackHeight
+      if (stackHeight > maxStackHeight) {
+        stackHeight = size; // Start new stack
+      }
+
+      // Set the final top position for the leaf
+      leaf.style.setProperty('--end-top', `calc(100% - ${stackHeight}px)`);
 
       // Create the SVG leaf
       const leafSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -207,26 +215,7 @@
 
       bannerContainer.appendChild(leaf);
 
-      // When the leaf lands
-      setTimeout(() => {
-        // Increment the stackHeight
-        stackHeight += (size - leafOverlap);
-
-        // Limit the stackHeight to maxStackHeight
-        if (stackHeight > maxStackHeight) {
-          stackHeight = 0; // Reset stackHeight
-        }
-
-        // Update the leaf's position to stack
-        leaf.style.animation = 'none'; // Stop the animation
-        leaf.style.top = `calc(100% - ${stackHeight}px - ${size}px)`;
-        leaf.style.left = `calc(${endLeft}% - ${size / 2}px)`;
-        leaf.style.transform = 'rotate(360deg)';
-
-        // Update CSS variable for next leaves
-        leaf.style.setProperty('--stack-height', `${stackHeight}px`);
-
-      }, (animationDuration + delay) * 1000);
+      // No need for setTimeout now
     }
 
     // Create leaves continuously
