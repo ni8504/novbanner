@@ -92,7 +92,7 @@
         transform: translateY(0) translateX(0) rotate(0deg);
       }
       100% {
-        transform: translateY(100vh) translateX(100px) rotate(360deg);
+        transform: translateY(calc(100vh + 50px)) translateX(100px) rotate(360deg);
       }
     }
 
@@ -197,9 +197,9 @@
 
       // When the leaf lands
       setTimeout(() => {
-        // Remove animation and reset transform
+        // Do not reset the transform
+        // Remove animation to stop any further changes
         leaf.style.animation = 'none';
-        leaf.style.transform = 'none';
 
         // Increment the stackHeight
         stackHeight += (size - leafOverlap);
