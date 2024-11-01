@@ -79,10 +79,10 @@
       position: absolute;
       top: -10%; /* Start above the banner */
       left: 50%; /* Starting horizontal position */
-      width: 50px;
+      width: 100px; /* Increased size */
       z-index: 1; /* Leaves are behind the text */
-      animation: fallLeaf 10s infinite linear;
-      opacity: 0.8;
+      animation: fallLeaf 5s forwards; /* Animation plays once and stays at the end position */
+      opacity: 0.9;
     }
 
     @keyframes fallLeaf {
@@ -90,29 +90,27 @@
         transform: translateX(0) rotate(0deg);
         top: -10%;
       }
-      50% {
-        transform: translateX(-100px) rotate(180deg);
-        top: 50%;
+      90% {
+        transform: translateX(-100px) rotate(360deg);
+        top: 90%;
       }
       100% {
-        transform: translateX(0) rotate(360deg);
-        top: 110%;
+        transform: translateX(-100px) rotate(360deg);
+        top: 90%;
       }
     }
 
     /* Additional Leaves with Variations */
     .falling-leaf:nth-of-type(2) {
-      left: 20%;
-      animation-duration: 12s;
-      animation-delay: 2s;
-      width: 40px;
+      left: 30%;
+      animation-delay: 1s;
+      width: 120px; /* Increased size */
     }
 
     .falling-leaf:nth-of-type(3) {
-      left: 80%;
-      animation-duration: 14s;
-      animation-delay: 4s;
-      width: 60px;
+      left: 70%;
+      animation-delay: 2s;
+      width: 110px; /* Increased size */
     }
 
     /* Responsive Adjustments */
@@ -154,25 +152,25 @@
   <div class="banner-container">
     <!-- Background Image -->
     <img
-      src="https://www.fitclub.net/sites/ob-143.app.sitewright.io/files/image/2024-11/november-background.jpg"
+      src="https://www.fitclub.net/sites/ob-143.app.sitewright.io/files/image/2024-09/west%20weights2%20%281%29.JPG" <!-- Replace with your November background image URL -->
       alt="November Banner"
       class="banner-image"
     />
-    <!-- Replace the above URL with your November background image URL -->
 
     <!-- Falling Leaf 1 -->
     <svg class="falling-leaf" viewBox="0 0 100 100">
-      <path d="M50 0 C70 20, 80 40, 50 100 C20 40, 30 20, 50 0 Z" fill="#A0522D" />
+      <!-- Simplified Maple Leaf Shape -->
+      <path d="M50 0 L65 25 L85 35 L70 50 L85 65 L65 75 L50 100 L35 75 L15 65 L30 50 L15 35 L35 25 Z" fill="#FF4500" />
     </svg>
 
     <!-- Falling Leaf 2 -->
     <svg class="falling-leaf" viewBox="0 0 100 100">
-      <path d="M50 0 C70 20, 80 40, 50 100 C20 40, 30 20, 50 0 Z" fill="#CD853F" />
+      <path d="M50 0 L65 25 L85 35 L70 50 L85 65 L65 75 L50 100 L35 75 L15 65 L30 50 L15 35 L35 25 Z" fill="#FF6347" />
     </svg>
 
     <!-- Falling Leaf 3 -->
     <svg class="falling-leaf" viewBox="0 0 100 100">
-      <path d="M50 0 C70 20, 80 40, 50 100 C20 40, 30 20, 50 0 Z" fill="#D2691E" />
+      <path d="M50 0 L65 25 L85 35 L70 50 L85 65 L65 75 L50 100 L35 75 L15 65 L30 50 L15 35 L35 25 Z" fill="#FFA500" />
     </svg>
 
     <!-- Text Overlay -->
