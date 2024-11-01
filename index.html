@@ -81,8 +81,9 @@
       position: absolute;
       top: -10%;
       width: 80px;
-      opacity: 0.8;
+      opacity: 0.9;
       z-index: 1; /* Leaves are behind the text */
+      transform-origin: center;
     }
 
     /* Leaf Animation */
@@ -155,12 +156,12 @@
 
     const leafColors = ['#FF4500', '#FF6347', '#FFA500', '#FFD700', '#FF8C00'];
     const leafPaths = [
-      // Maple leaf SVG path data
-      'M50 0 L65 25 L85 35 L70 50 L85 65 L65 75 L50 100 L35 75 L15 65 L30 50 L15 35 L35 25 Z',
-      // Oak leaf SVG path data
-      'M50 0 C60 10, 70 20, 75 30 C80 40, 75 50, 70 60 C65 70, 60 80, 50 100 C40 80, 35 70, 30 60 C25 50, 20 40, 25 30 C30 20, 40 10, 50 0 Z',
-      // Birch leaf SVG path data
-      'M50 0 C70 30, 70 70, 50 100 C30 70, 30 30, 50 0 Z',
+      // Detailed Maple Leaf SVG path data
+      'M50,0 C35,20 15,25 15,45 C15,60 35,65 50,100 C65,65 85,60 85,45 C85,25 65,20 50,0 Z',
+      // Oak Leaf SVG path data
+      'M50,0 C55,15 70,20 75,35 C80,50 65,60 60,75 C55,90 70,95 65,100 C60,105 50,100 50,100 C50,100 40,105 35,100 C30,95 45,90 40,75 C35,60 20,50 25,35 C30,20 45,15 50,0 Z',
+      // Birch Leaf SVG path data
+      'M50,0 C70,30 70,70 50,100 C30,70 30,30 50,0 Z',
     ];
 
     function createLeaf() {
