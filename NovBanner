@@ -81,7 +81,7 @@
       position: absolute;
       top: -10%; /* Start above the banner */
       width: var(--leaf-size, 80px);
-      height: var(--leaf-size, 80px);
+      height: auto;
       opacity: 0.9;
       z-index: 1; /* Leaves are behind the text */
       transform-origin: center;
@@ -90,14 +90,12 @@
     /* Leaf Animation */
     @keyframes fall {
       0% {
+        transform: translateX(0) rotate(0deg);
         top: -10%;
-        left: var(--start-left, 50%);
-        transform: rotate(0deg);
       }
       100% {
-        top: calc(100% - var(--leaf-size));
-        left: var(--end-left, 50%);
-        transform: rotate(360deg);
+        transform: translateX(100px) rotate(360deg);
+        top: calc(100% - 50px); /* Settle at the bottom */
       }
     }
 
@@ -153,7 +151,7 @@
     <!-- Text Overlay -->
     <div class="banner-text">
       <h1>🍁 Fall into Fitness this November! 🍁</h1>
-      <p></p>
+      <p>Stay active before the holidays! 🏋️‍♂️</p>
     </div>
   </div>
 
@@ -161,43 +159,31 @@
   <script>
     const bannerContainer = document.querySelector('.banner-container');
 
-    const leafColors = ['#FF4500', '#FF6347', '#FFA500', '#FFD700', '#FF8C00'];
-    const leafPaths = [
-      // Accurate Maple Leaf SVG path data
-      'M50,5 C30,25 10,35 10,55 C10,70 30,80 50,95 C70,80 90,70 90,55 C90,35 70,25 50,5 Z',
-      // Oak Leaf SVG path data
-      'M50,0 C35,20 15,25 15,45 C15,60 35,65 50,100 C65,65 85,60 85,45 C85,25 65,20 50,0 Z',
-      // Birch Leaf SVG path data
-      'M50,0 C70,30 70,70 50,100 C30,70 30,30 50,0 Z',
+    // Array of leaf image URLs
+    const leafImages = [
+      'https://clipart-library.com/images_k/maple-leaf-transparent-background/maple-leaf-transparent-background-19.png',
+      'https://clipart-library.com/images_k/maple-leaf-transparent/maple-leaf-transparent-18.png',
+      'https://static.vecteezy.com/system/resources/previews/036/421/364/non_2x/ai-generated-red-autumn-oak-leaf-isolated-on-transparent-background-free-png.pngg',
+      // Add more leaf image URLs as needed
     ];
 
     function createLeaf() {
-      const leaf = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      leaf.setAttribute('viewBox', '0 0 100 100');
+      const leaf = document.createElement('img');
       leaf.classList.add('leaf');
 
-      // Randomly select a leaf path and color
-      const pathData = leafPaths[Math.floor(Math.random() * leafPaths.length)];
-      const color = leafColors[Math.floor(Math.random() * leafColors.length)];
+      // Randomly select a leaf image
+      const imgSrc = leafImages[Math.floor(Math.random() * leafImages.length)];
+      leaf.src = imgSrc;
 
       const size = 60 + Math.random() * 40; // Leaf size between 60px and 100px
       leaf.style.setProperty('--leaf-size', `${size}px`);
 
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', pathData);
-      path.setAttribute('fill', color);
-
-      leaf.appendChild(path);
-
-      // Randomize starting and ending positions
-      const startLeft = Math.random() * 100; // Percentage
-      const endLeft = startLeft + (Math.random() * 20 - 10); // Move left or right by up to 10%
-      leaf.style.setProperty('--start-left', `${startLeft}%`);
-      leaf.style.setProperty('--end-left', `${endLeft}%`);
-
+      // Randomize starting position and delay
+      const leftPosition = Math.random() * 100; // Percentage
       const animationDuration = 5 + Math.random() * 5; // 5s to 10s
       const delay = Math.random() * 5; // 0s to 5s
 
+      leaf.style.left = `${leftPosition}%`;
       leaf.style.animation = `fall ${animationDuration}s linear ${delay}s forwards`;
 
       bannerContainer.appendChild(leaf);
@@ -207,8 +193,7 @@
         // Remove the animation to prevent further changes
         leaf.style.animation = 'none';
         // Set the final position and rotation
-        leaf.style.top = `calc(100% - ${size}px)`;
-        leaf.style.left = `calc(${endLeft}% - ${size / 2}px)`;
+        leaf.style.top = 'calc(100% - 50px)';
         leaf.style.transform = 'rotate(360deg)';
       });
     }
