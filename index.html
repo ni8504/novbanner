@@ -80,7 +80,8 @@
     .leaf {
       position: absolute;
       top: -10%; /* Start above the banner */
-      width: 80px;
+      width: var(--leaf-size, 80px);
+      height: auto;
       opacity: 0.9;
       z-index: 1; /* Leaves are behind the text */
       transform-origin: center;
@@ -89,11 +90,18 @@
     /* Leaf Animation */
     @keyframes fall {
       0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
+        transform: translateX(0) rotate(0deg);
+        top: -10%;
       }
       100% {
-        transform: translateY(100vh) translateX(100px) rotate(360deg);
+        transform: translateX(100px) rotate(360deg);
+        top: calc(100% - 50px); /* Settle at the bottom */
       }
+    }
+
+    /* Ensure the leaf stays at the final position */
+    .leaf {
+      animation-fill-mode: forwards;
     }
 
     /* Responsive Adjustments */
@@ -139,12 +147,11 @@
       alt="November Banner"
       class="banner-image"
     />
-    <!-- Replace the above URL with your November background image URL -->
 
     <!-- Text Overlay -->
     <div class="banner-text">
       <h1>🍁 Fall into Fitness this November! 🍁</h1>
-      <p></p>
+      <p>Stay active before the holidays! 🏋️‍♂️</p>
     </div>
   </div>
 
@@ -152,38 +159,24 @@
   <script>
     const bannerContainer = document.querySelector('.banner-container');
 
-    const leafColors = ['#FF4500', '#FF6347', '#FFA500', '#FFD700', '#FF8C00'];
-    const leafPaths = [
-      // Accurate Maple Leaf SVG path data
-      'M50,5 C30,25 10,35 10,55 C10,70 30,80 50,95 C70,80 90,70 90,55 C90,35 70,25 50,5 Z',
-      // Oak Leaf SVG path data
-      'M50,0 C35,20 15,25 15,45 C15,60 35,65 50,100 C65,65 85,60 85,45 C85,25 65,20 50,0 Z',
-      // Birch Leaf SVG path data
-      'M50,0 C70,30 70,70 50,100 C30,70 30,30 50,0 Z',
+    // Array of leaf image URLs
+    const leafImages = [
+      'https://clipart-library.com/images_k/maple-leaf-transparent-background/maple-leaf-transparent-background-19.png',
+      'https://clipart-library.com/images_k/maple-leaf-transparent/maple-leaf-transparent-18.png',
+      'https://static.vecteezy.com/system/resources/previews/036/421/364/non_2x/ai-generated-red-autumn-oak-leaf-isolated-on-transparent-background-free-png.pngg',
+      // Add more leaf image URLs as needed
     ];
 
-    let stackHeight = 0; // Accumulated height of leaves at the bottom
-    const maxStackHeight = 0.5 * window.innerHeight; // Maximum stack height (50% of viewport height)
-    const leafOverlap = 20; // Overlap between leaves in pixels
-
     function createLeaf() {
-      const leaf = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      leaf.setAttribute('viewBox', '0 0 100 100');
+      const leaf = document.createElement('img');
       leaf.classList.add('leaf');
 
-      // Randomly select a leaf path and color
-      const pathData = leafPaths[Math.floor(Math.random() * leafPaths.length)];
-      const color = leafColors[Math.floor(Math.random() * leafColors.length)];
+      // Randomly select a leaf image
+      const imgSrc = leafImages[Math.floor(Math.random() * leafImages.length)];
+      leaf.src = imgSrc;
 
       const size = 60 + Math.random() * 40; // Leaf size between 60px and 100px
-      leaf.style.width = `${size}px`;
-      leaf.style.height = `${size}px`; // Set height explicitly
-
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', pathData);
-      path.setAttribute('fill', color);
-
-      leaf.appendChild(path);
+      leaf.style.setProperty('--leaf-size', `${size}px`);
 
       // Randomize starting position and delay
       const leftPosition = Math.random() * 100; // Percentage
@@ -195,11 +188,14 @@
 
       bannerContainer.appendChild(leaf);
 
-      // Remove leaf after animation completes
-      setTimeout(() => {
+      // Ensure the leaf stays at the final position after animation
+      leaf.addEventListener('animationend', () => {
+        // Remove the animation to prevent further changes
+        leaf.style.animation = 'none';
+        // Set the final position and rotation
         leaf.style.top = 'calc(100% - 50px)';
-        leaf.style.position = 'absolute';
-      }, (animationDuration + delay) * 1000);
+        leaf.style.transform = 'rotate(360deg)';
+      });
     }
 
     // Create leaves continuously
