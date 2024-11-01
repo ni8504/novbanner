@@ -79,25 +79,20 @@
     /* Falling Leaves */
     .leaf {
       position: absolute;
-      width: var(--leaf-size);
-      height: var(--leaf-size);
       top: -10%; /* Start above the banner */
-      left: var(--start-left);
+      width: 80px;
       opacity: 0.9;
       z-index: 1; /* Leaves are behind the text */
+      transform-origin: center;
     }
 
     /* Leaf Animation */
     @keyframes fall {
       0% {
-        top: -10%;
-        left: var(--start-left);
-        transform: rotate(0deg);
+        transform: translateY(0) translateX(0) rotate(0deg);
       }
       100% {
-        top: 100%;
-        left: var(--end-left);
-        transform: rotate(360deg);
+        transform: translateY(100vh) translateX(100px) rotate(360deg);
       }
     }
 
@@ -161,6 +156,10 @@
     const leafPaths = [
       // Accurate Maple Leaf SVG path data
       'M50,5 C30,25 10,35 10,55 C10,70 30,80 50,95 C70,80 90,70 90,55 C90,35 70,25 50,5 Z',
+      // Oak Leaf SVG path data
+      'M50,0 C35,20 15,25 15,45 C15,60 35,65 50,100 C65,65 85,60 85,45 C85,25 65,20 50,0 Z',
+      // Birch Leaf SVG path data
+      'M50,0 C70,30 70,70 50,100 C30,70 30,30 50,0 Z',
     ];
 
     let stackHeight = 0; // Accumulated height of leaves at the bottom
@@ -168,63 +167,53 @@
     const leafOverlap = 20; // Overlap between leaves in pixels
 
     function createLeaf() {
-      const leaf = document.createElement('div');
+      const leaf = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      leaf.setAttribute('viewBox', '0 0 100 100');
       leaf.classList.add('leaf');
 
-      // Randomly select a leaf color
+      // Randomly select a leaf path and color
+      const pathData = leafPaths[Math.floor(Math.random() * leafPaths.length)];
       const color = leafColors[Math.floor(Math.random() * leafColors.length)];
 
       const size = 60 + Math.random() * 40; // Leaf size between 60px and 100px
-      leaf.style.setProperty('--leaf-size', `${size}px`);
-
-      // Randomize starting and ending positions
-      const startLeft = Math.random() * 100; // Percentage
-      const endLeft = startLeft + (Math.random() * 20 - 10); // Move left or right by up to 10%
-      leaf.style.setProperty('--start-left', `${startLeft}%`);
-      leaf.style.setProperty('--end-left', `${endLeft}%`);
-
-      // Create the SVG leaf
-      const leafSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      leafSvg.setAttribute('viewBox', '0 0 100 100');
-      leafSvg.style.width = '100%';
-      leafSvg.style.height = '100%';
+      leaf.style.width = `${size}px`;
+      leaf.style.height = `${size}px`; // Set height explicitly
 
       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', leafPaths[0]); // Use the maple leaf path
+      path.setAttribute('d', pathData);
       path.setAttribute('fill', color);
-      leafSvg.appendChild(path);
 
-      leaf.appendChild(leafSvg);
+      leaf.appendChild(path);
 
-      // Animation settings
+      // Randomize starting position and delay
+      const leftPosition = Math.random() * 100; // Percentage
       const animationDuration = 5 + Math.random() * 5; // 5s to 10s
       const delay = Math.random() * 5; // 0s to 5s
 
+      leaf.style.left = `${leftPosition}%`;
       leaf.style.animation = `fall ${animationDuration}s linear ${delay}s forwards`;
 
       bannerContainer.appendChild(leaf);
 
       // When the leaf lands
-      leaf.addEventListener('animationend', () => {
-        // Remove animation
+      setTimeout(() => {
+        // Remove animation and reset transform
         leaf.style.animation = 'none';
-        leaf.style.transition = 'none'; // Remove any transition
-
-        // Reset transform to prevent further rotation
-        leaf.style.transform = 'rotate(360deg)';
+        leaf.style.transform = 'none';
 
         // Increment the stackHeight
         stackHeight += (size - leafOverlap);
 
         // Limit the stackHeight to maxStackHeight
         if (stackHeight > maxStackHeight) {
-          stackHeight = size; // Start new stack
+          stackHeight = 0; // Reset stackHeight
         }
 
         // Adjust the leaf's position to stack
-        leaf.style.top = `calc(100% - ${stackHeight}px - ${size}px)`;
-        leaf.style.left = `calc(${endLeft}% - ${size / 2}px)`;
-      });
+        leaf.style.bottom = `${stackHeight}px`;
+        leaf.style.position = 'absolute';
+
+      }, (animationDuration + delay) * 1000);
     }
 
     // Create leaves continuously
