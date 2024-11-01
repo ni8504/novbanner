@@ -95,7 +95,7 @@
         transform: rotate(0deg);
       }
       100% {
-        top: var(--end-top);
+        top: 100%;
         left: var(--end-left);
         transform: rotate(360deg);
       }
@@ -183,17 +183,6 @@
       leaf.style.setProperty('--start-left', `${startLeft}%`);
       leaf.style.setProperty('--end-left', `${endLeft}%`);
 
-      // Increment the stackHeight before the animation starts
-      stackHeight += (size - leafOverlap);
-
-      // Limit the stackHeight to maxStackHeight
-      if (stackHeight > maxStackHeight) {
-        stackHeight = size; // Start new stack
-      }
-
-      // Set the final top position for the leaf
-      leaf.style.setProperty('--end-top', `calc(100% - ${stackHeight}px)`);
-
       // Create the SVG leaf
       const leafSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       leafSvg.setAttribute('viewBox', '0 0 100 100');
@@ -215,7 +204,27 @@
 
       bannerContainer.appendChild(leaf);
 
-      // No need for setTimeout now
+      // When the leaf lands
+      leaf.addEventListener('animationend', () => {
+        // Remove animation
+        leaf.style.animation = 'none';
+        leaf.style.transition = 'none'; // Remove any transition
+
+        // Reset transform to prevent further rotation
+        leaf.style.transform = 'rotate(360deg)';
+
+        // Increment the stackHeight
+        stackHeight += (size - leafOverlap);
+
+        // Limit the stackHeight to maxStackHeight
+        if (stackHeight > maxStackHeight) {
+          stackHeight = size; // Start new stack
+        }
+
+        // Adjust the leaf's position to stack
+        leaf.style.top = `calc(100% - ${stackHeight}px - ${size}px)`;
+        leaf.style.left = `calc(${endLeft}% - ${size / 2}px)`;
+      });
     }
 
     // Create leaves continuously
