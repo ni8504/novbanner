@@ -192,10 +192,21 @@
 
       bannerContainer.appendChild(leaf);
 
-      // Remove leaf after animation completes
+      // When the leaf lands
       setTimeout(() => {
-        leaf.style.top = 'calc(100% - 50px)';
+        // Increment the stackHeight
+        stackHeight += (size - leafOverlap);
+
+        // Limit the stackHeight to maxStackHeight
+        if (stackHeight > maxStackHeight) {
+          stackHeight = 0; // Reset stackHeight
+        }
+
+        // Adjust the leaf's position to stack
+        leaf.style.top = `calc(100% - ${stackHeight}px)`;
         leaf.style.position = 'absolute';
+        leaf.style.transform = `translateX(${100}px) rotate(${360}deg)`;
+
       }, (animationDuration + delay) * 1000);
     }
 
