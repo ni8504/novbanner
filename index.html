@@ -30,7 +30,7 @@
     .banner-container {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: 100vh; /* Set height to viewport height */
       overflow: hidden;
     }
 
@@ -41,7 +41,9 @@
       object-fit: cover; /* Ensures the image fills the container */
       object-position: center;
       display: block;
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
       z-index: 0; /* Background image at the lowest layer */
     }
 
@@ -74,43 +76,25 @@
       font-size: 2.5em; /* Increased font size */
     }
 
-    /* Falling Leaves Animation */
-    .falling-leaf {
+    /* Falling Leaves */
+    .leaf {
       position: absolute;
-      top: -10%; /* Start above the banner */
-      left: 50%; /* Starting horizontal position */
-      width: 100px; /* Increased size */
+      top: -10%;
+      width: 80px;
+      opacity: 0.8;
       z-index: 1; /* Leaves are behind the text */
-      animation: fallLeaf 5s forwards; /* Animation plays once and stays at the end position */
-      opacity: 0.9;
     }
 
-    @keyframes fallLeaf {
+    /* Leaf Animation */
+    @keyframes fall {
       0% {
         transform: translateX(0) rotate(0deg);
         top: -10%;
       }
-      90% {
-        transform: translateX(-100px) rotate(360deg);
-        top: 90%;
-      }
       100% {
-        transform: translateX(-100px) rotate(360deg);
-        top: 90%;
+        transform: translateX(100px) rotate(360deg);
+        top: calc(100% - 50px); /* Stack at the bottom */
       }
-    }
-
-    /* Additional Leaves with Variations */
-    .falling-leaf:nth-of-type(2) {
-      left: 30%;
-      animation-delay: 1s;
-      width: 120px; /* Increased size */
-    }
-
-    .falling-leaf:nth-of-type(3) {
-      left: 70%;
-      animation-delay: 2s;
-      width: 110px; /* Increased size */
     }
 
     /* Responsive Adjustments */
@@ -152,26 +136,11 @@
   <div class="banner-container">
     <!-- Background Image -->
     <img
-      src="https://www.fitclub.net/sites/ob-143.app.sitewright.io/files/image/2024-09/west%20weights2%20%281%29.JPG" <!-- Replace with your November background image URL -->
+      src="https://www.fitclub.net/sites/ob-143.app.sitewright.io/files/image/2024-09/west%20weights2%20%281%29.JPG"
       alt="November Banner"
       class="banner-image"
     />
-
-    <!-- Falling Leaf 1 -->
-    <svg class="falling-leaf" viewBox="0 0 100 100">
-      <!-- Simplified Maple Leaf Shape -->
-      <path d="M50 0 L65 25 L85 35 L70 50 L85 65 L65 75 L50 100 L35 75 L15 65 L30 50 L15 35 L35 25 Z" fill="#FF4500" />
-    </svg>
-
-    <!-- Falling Leaf 2 -->
-    <svg class="falling-leaf" viewBox="0 0 100 100">
-      <path d="M50 0 L65 25 L85 35 L70 50 L85 65 L65 75 L50 100 L35 75 L15 65 L30 50 L15 35 L35 25 Z" fill="#FF6347" />
-    </svg>
-
-    <!-- Falling Leaf 3 -->
-    <svg class="falling-leaf" viewBox="0 0 100 100">
-      <path d="M50 0 L65 25 L85 35 L70 50 L85 65 L65 75 L50 100 L35 75 L15 65 L30 50 L15 35 L35 25 Z" fill="#FFA500" />
-    </svg>
+    <!-- Replace the above URL with your November background image URL -->
 
     <!-- Text Overlay -->
     <div class="banner-text">
@@ -179,5 +148,55 @@
       <p>Stay active before the holidays! 🏋️‍♂️</p>
     </div>
   </div>
+
+  <!-- JavaScript for Falling Leaves -->
+  <script>
+    const bannerContainer = document.querySelector('.banner-container');
+
+    const leafColors = ['#FF4500', '#FF6347', '#FFA500', '#FFD700', '#FF8C00'];
+    const leafPaths = [
+      // Maple leaf SVG path data
+      'M50 0 L65 25 L85 35 L70 50 L85 65 L65 75 L50 100 L35 75 L15 65 L30 50 L15 35 L35 25 Z',
+      // Oak leaf SVG path data
+      'M50 0 C60 10, 70 20, 75 30 C80 40, 75 50, 70 60 C65 70, 60 80, 50 100 C40 80, 35 70, 30 60 C25 50, 20 40, 25 30 C30 20, 40 10, 50 0 Z',
+      // Birch leaf SVG path data
+      'M50 0 C70 30, 70 70, 50 100 C30 70, 30 30, 50 0 Z',
+    ];
+
+    function createLeaf() {
+      const leaf = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      leaf.setAttribute('viewBox', '0 0 100 100');
+      leaf.classList.add('leaf');
+
+      // Randomly select a leaf path and color
+      const pathData = leafPaths[Math.floor(Math.random() * leafPaths.length)];
+      const color = leafColors[Math.floor(Math.random() * leafColors.length)];
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', pathData);
+      path.setAttribute('fill', color);
+
+      leaf.appendChild(path);
+
+      // Randomize starting position and delay
+      const leftPosition = Math.random() * 100; // Percentage
+      const animationDuration = 5 + Math.random() * 5; // 5s to 10s
+      const delay = Math.random() * 5; // 0s to 5s
+
+      leaf.style.left = `${leftPosition}%`;
+      leaf.style.animation = `fall ${animationDuration}s linear ${delay}s forwards`;
+
+      bannerContainer.appendChild(leaf);
+
+      // Remove leaf after animation completes
+      setTimeout(() => {
+        leaf.style.top = 'calc(100% - 50px)';
+        leaf.style.position = 'absolute';
+      }, (animationDuration + delay) * 1000);
+    }
+
+    // Create leaves continuously
+    setInterval(createLeaf, 1000); // Adjust the interval as needed
+  </script>
 </body>
 </html>
