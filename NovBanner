@@ -30,7 +30,7 @@
     .banner-container {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: 100vh; /* Set height to viewport height */
       overflow: hidden;
     }
 
@@ -41,7 +41,9 @@
       object-fit: cover; /* Ensures the image fills the container */
       object-position: center;
       display: block;
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
       z-index: 0; /* Background image at the lowest layer */
     }
 
@@ -74,45 +76,34 @@
       font-size: 2.5em; /* Increased font size */
     }
 
-    /* Falling Leaves Animation */
-    .falling-leaf {
+    /* Falling Leaves */
+    .leaf {
       position: absolute;
       top: -10%; /* Start above the banner */
-      left: 50%; /* Starting horizontal position */
-      width: 50px;
+      width: var(--leaf-size, 80px);
+      height: var(--leaf-size, 80px);
+      opacity: 0.9;
       z-index: 1; /* Leaves are behind the text */
-      animation: fallLeaf 10s infinite linear;
-      opacity: 0.8;
+      transform-origin: center;
     }
 
-    @keyframes fallLeaf {
+    /* Leaf Animation */
+    @keyframes fall {
       0% {
-        transform: translateX(0) rotate(0deg);
         top: -10%;
-      }
-      50% {
-        transform: translateX(-100px) rotate(180deg);
-        top: 50%;
+        left: var(--start-left, 50%);
+        transform: rotate(0deg);
       }
       100% {
-        transform: translateX(0) rotate(360deg);
-        top: 110%;
+        top: calc(100% - var(--leaf-size));
+        left: var(--end-left, 50%);
+        transform: rotate(360deg);
       }
     }
 
-    /* Additional Leaves with Variations */
-    .falling-leaf:nth-child(2) {
-      left: 20%;
-      animation-duration: 12s;
-      animation-delay: 2s;
-      width: 40px;
-    }
-
-    .falling-leaf:nth-child(3) {
-      left: 80%;
-      animation-duration: 14s;
-      animation-delay: 4s;
-      width: 60px;
+    /* Ensure the leaf stays at the final position */
+    .leaf {
+      animation-fill-mode: forwards;
     }
 
     /* Responsive Adjustments */
@@ -154,37 +145,76 @@
   <div class="banner-container">
     <!-- Background Image -->
     <img
-      src="https://yourwebsite.com/images/november-background.jpg" <!-- Replace with your November background image URL -->
+      src="https://www.fitclub.net/sites/ob-143.app.sitewright.io/files/image/2024-09/west%20weights2%20%281%29.JPG"
       alt="November Banner"
       class="banner-image"
     />
 
-    <!-- Falling Leaf 1 -->
-    <img
-      src="https://yourwebsite.com/images/leaf.png" <!-- Replace with your leaf image URL -->
-      alt="Falling Leaf 1"
-      class="falling-leaf"
-    />
-
-    <!-- Falling Leaf 2 -->
-    <img
-      src="https://yourwebsite.com/images/leaf.png" <!-- Replace with your leaf image URL -->
-      alt="Falling Leaf 2"
-      class="falling-leaf"
-    />
-
-    <!-- Falling Leaf 3 -->
-    <img
-      src="https://yourwebsite.com/images/leaf.png" <!-- Replace with your leaf image URL -->
-      alt="Falling Leaf 3"
-      class="falling-leaf"
-    />
-
     <!-- Text Overlay -->
     <div class="banner-text">
-      <h1>🍁 Embrace the Autumn Vibes! 🍁</h1>
-      <p>Join now and enjoy special November offers! 🦃</p>
+      <h1>🍁 Fall into Fitness this November! 🍁</h1>
+      <p></p>
     </div>
   </div>
+
+  <!-- JavaScript for Falling Leaves -->
+  <script>
+    const bannerContainer = document.querySelector('.banner-container');
+
+    const leafColors = ['#FF4500', '#FF6347', '#FFA500', '#FFD700', '#FF8C00'];
+    const leafPaths = [
+      // Accurate Maple Leaf SVG path data
+      'M50,5 C30,25 10,35 10,55 C10,70 30,80 50,95 C70,80 90,70 90,55 C90,35 70,25 50,5 Z',
+      // Oak Leaf SVG path data
+      'M50,0 C35,20 15,25 15,45 C15,60 35,65 50,100 C65,65 85,60 85,45 C85,25 65,20 50,0 Z',
+      // Birch Leaf SVG path data
+      'M50,0 C70,30 70,70 50,100 C30,70 30,30 50,0 Z',
+    ];
+
+    function createLeaf() {
+      const leaf = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      leaf.setAttribute('viewBox', '0 0 100 100');
+      leaf.classList.add('leaf');
+
+      // Randomly select a leaf path and color
+      const pathData = leafPaths[Math.floor(Math.random() * leafPaths.length)];
+      const color = leafColors[Math.floor(Math.random() * leafColors.length)];
+
+      const size = 60 + Math.random() * 40; // Leaf size between 60px and 100px
+      leaf.style.setProperty('--leaf-size', `${size}px`);
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', pathData);
+      path.setAttribute('fill', color);
+
+      leaf.appendChild(path);
+
+      // Randomize starting and ending positions
+      const startLeft = Math.random() * 100; // Percentage
+      const endLeft = startLeft + (Math.random() * 20 - 10); // Move left or right by up to 10%
+      leaf.style.setProperty('--start-left', `${startLeft}%`);
+      leaf.style.setProperty('--end-left', `${endLeft}%`);
+
+      const animationDuration = 5 + Math.random() * 5; // 5s to 10s
+      const delay = Math.random() * 5; // 0s to 5s
+
+      leaf.style.animation = `fall ${animationDuration}s linear ${delay}s forwards`;
+
+      bannerContainer.appendChild(leaf);
+
+      // Ensure the leaf stays at the final position after animation
+      leaf.addEventListener('animationend', () => {
+        // Remove the animation to prevent further changes
+        leaf.style.animation = 'none';
+        // Set the final position and rotation
+        leaf.style.top = `calc(100% - ${size}px)`;
+        leaf.style.left = `calc(${endLeft}% - ${size / 2}px)`;
+        leaf.style.transform = 'rotate(360deg)';
+      });
+    }
+
+    // Create leaves continuously
+    setInterval(createLeaf, 1000); // Adjust the interval as needed
+  </script>
 </body>
 </html>
