@@ -164,6 +164,10 @@
       'M50,0 C70,30 70,70 50,100 C30,70 30,30 50,0 Z',
     ];
 
+    let stackHeight = 0; // Accumulated height of leaves at the bottom
+    const maxStackHeight = 0.5 * window.innerHeight; // Maximum stack height (50% of viewport height)
+    const leafOverlap = 20; // Overlap between leaves in pixels
+    
     function createLeaf() {
       const leaf = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       leaf.setAttribute('viewBox', '0 0 100 100');
