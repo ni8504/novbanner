@@ -197,10 +197,6 @@
 
       // When the leaf lands
       setTimeout(() => {
-        // Remove animation and reset transform
-        leaf.style.animation = 'none';
-        leaf.style.transform = 'none';
-
         // Increment the stackHeight
         stackHeight += (size - leafOverlap);
 
@@ -210,8 +206,9 @@
         }
 
         // Adjust the leaf's position to stack
-        leaf.style.bottom = `${stackHeight}px`;
+        leaf.style.top = `calc(100% - ${stackHeight}px)`;
         leaf.style.position = 'absolute';
+        leaf.style.transform = `translateX(${100}px) rotate(${360}deg)`;
 
       }, (animationDuration + delay) * 1000);
     }
