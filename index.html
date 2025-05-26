@@ -2,205 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Responsive November Banner</title>
+  <title>FitClub • Memorial Day Sale Banner</title>
 
-  <!-- Include Google Fonts for Autumn-Themed Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
   <style>
-    /* Reset default margins and paddings */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* ---------- RESET ---------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; font-family: 'Montserrat', sans-serif; }
 
-    /* Remove body margins and set to fill the iframe */
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden; /* Prevent scrollbars */
-    }
-
-    /* Banner Container */
+    /* ---------- CONTAINER ---------- */
     .banner-container {
       position: relative;
       width: 100%;
-      height: 100vh; /* Set height to viewport height */
-      overflow: hidden;
-    }
-
-    /* Banner Image */
-    .banner-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Ensures the image fills the container */
-      object-position: center;
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0; /* Background image at the lowest layer */
-    }
-
-    /* Overlay Text with Enhanced Styling */
-    .banner-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      /* Semi-transparent background */
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 16px 24px;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 800px;
-      z-index: 2;
-      font-family: 'Crimson Pro', serif; /* Autumn-themed font */
+      overflow: hidden;
+      color: #ffffff;
     }
 
-    .banner-text h1 {
-      font-size: 3.5em; /* Increased font size */
-      margin-bottom: 0.5em;
-      color: #FFFFFF; /* White color */
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    }
-
-    .banner-text p {
-      font-size: 2.5em; /* Increased font size */
-      color: #FFD700; /* Gold color */
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    }
-
-    /* Falling Leaves */
-    .leaf {
+    /* ---------- BACKGROUND ---------- */
+    .banner-background {
       position: absolute;
-      top: -10%; /* Start above the banner */
-      width: var(--leaf-size, 80px);
-      height: auto;
-      opacity: 0.9;
-      z-index: 1; /* Leaves are behind the text */
-      transform-origin: center;
+      inset: 0;
+      /* Patriotic red‑white‑blue gradient */
+      background: linear-gradient(120deg,#b22234 0%,#b22234 33%,#ffffff 33%,#ffffff 66%,#3c3b6e 66%,#3c3b6e 100%);
+      background-size: 200% 200%;
+      animation: wave 20s ease infinite; /* slow waving stripes */
+      z-index: 0;
     }
+    @keyframes wave { 0% { background-position: 0 0;} 50% { background-position: 100% 100%; } 100% { background-position: 0 0;} }
 
-    /* Leaf Animation */
-    @keyframes fall {
-      0% {
-        transform: translateX(0) rotate(0deg);
-        top: -10%;
-      }
-      100% {
-        transform: translateX(100px) rotate(360deg);
-        top: calc(100% - 50px); /* Settle at the bottom */
-      }
-    }
+    /* ---------- FALLING STARS ---------- */
+    .stars { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+    .star  { position: absolute; top: -10%; user-select: none; animation: fall linear infinite; transform-origin: center; }
+    @keyframes fall { 0% { transform: translateY(0) rotate(0deg);} 100% { transform: translateY(110vh) rotate(360deg);} }
 
-    /* Ensure the leaf stays at the final position */
-    .leaf {
-      animation-fill-mode: forwards;
-    }
+    /* ---------- CONTENT ---------- */
+    .banner-content { position: relative; z-index: 2; max-width: 800px; padding: 20px; }
+    .main-message  { font-size: 3em; margin-bottom: 0.5em; text-shadow: 2px 2px 8px rgba(0,0,0,0.6); padding: 0 20px; }
+    .highlights    { font-size: 1.5em; line-height: 1.4; padding: 0 20px; }
+    .highlights div { margin-bottom: 0.5em; }
 
-    /* Responsive Adjustments */
-
-    /* Tablets and Small Desktops */
-    @media (max-width: 1024px) {
-      .banner-text h1 {
-        font-size: 3em;
-      }
-
-      .banner-text p {
-        font-size: 2em;
-      }
-    }
-
-    /* Mobile Devices */
-    @media (max-width: 768px) {
-      .banner-text h1 {
-        font-size: 2.5em;
-      }
-
-      .banner-text p {
-        font-size: 1.8em;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .banner-text h1 {
-        font-size: 2em;
-      }
-
-      .banner-text p {
-        font-size: 1.5em;
-      }
-    }
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) { .main-message { font-size: 2em; } .highlights { font-size: 1.2em; } }
+    @media (max-width: 480px) { .main-message { font-size: 1.5em; } .highlights { font-size: 1em; } }
   </style>
 </head>
 <body>
   <div class="banner-container">
-    <!-- Background Image -->
-    <img
-      src="https://www.fitclub.net/sites/ob-143.app.sitewright.io/files/image/2024-09/west%20weights2%20%281%29.JPG"
-      alt="November Banner"
-      class="banner-image"
-    />
+    <div class="banner-background"></div>
+    <div class="stars" aria-hidden="true"></div>
 
-    <!-- Text Overlay -->
-    <div class="banner-text">
-      <h1>🍁 Fall into Fitness this November! 🍁</h1>
-      <p>FitClub is here to help you stay active before the holidays! 🏋️‍♂️</p>
+    <div class="banner-content">
+      <div class="main-message">Memorial Day Sale • One Day Only!</div>
+      <div class="highlights">
+        <div>🇺🇸 <strong>NO Enrollment Fee</strong></div>
+        <div>💥 Just <strong>$10/month</strong> for your first 3 months</div>
+        <div>🎯 Pay only <strong>$10 today</strong> to get started</div>
+        <div>🏆 Voted Best Gym in Springfield</div>
+      </div>
     </div>
   </div>
 
-  <!-- JavaScript for Falling Leaves -->
+  <!-- STAR GENERATOR -->
   <script>
-    const bannerContainer = document.querySelector('.banner-container');
-
-    // Array of leaf image URLs
-    const leafImages = [
-      'https://clipart-library.com/images_k/maple-leaf-transparent-background/maple-leaf-transparent-background-19.png',
-      'https://clipart-library.com/images_k/maple-leaf-transparent/maple-leaf-transparent-18.png',
-      'https://static.vecteezy.com/system/resources/previews/036/421/364/non_2x/ai-generated-red-autumn-oak-leaf-isolated-on-transparent-background-free-png.png',
-      // Add more leaf image URLs as needed
-    ];
-
-    function createLeaf() {
-      const leaf = document.createElement('img');
-      leaf.classList.add('leaf');
-
-      // Randomly select a leaf image
-      const imgSrc = leafImages[Math.floor(Math.random() * leafImages.length)];
-      leaf.src = imgSrc;
-
-      const size = 60 + Math.random() * 40; // Leaf size between 60px and 100px
-      leaf.style.setProperty('--leaf-size', `${size}px`);
-
-      // Randomize starting position and delay
-      const leftPosition = Math.random() * 100; // Percentage
-      const animationDuration = 5 + Math.random() * 5; // 5s to 10s
-      const delay = Math.random() * 5; // 0s to 5s
-
-      leaf.style.left = `${leftPosition}%`;
-      leaf.style.animation = `fall ${animationDuration}s linear ${delay}s forwards`;
-
-      bannerContainer.appendChild(leaf);
-
-      // Ensure the leaf stays at the final position after animation
-      leaf.addEventListener('animationend', () => {
-        // Remove the animation to prevent further changes
-        leaf.style.animation = 'none';
-        // Set the final position and rotation
-        leaf.style.top = 'calc(100% - 50px)';
-        leaf.style.transform = 'translateX(100px) rotate(360deg)';
-      });
+    const starContainer = document.querySelector('.stars');
+    const starCount = 60;
+    for (let i = 0; i < starCount; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      s.textContent = '⭐';
+      s.style.fontSize = (Math.random() * 1.1 + 0.5) + 'em';
+      s.style.left      = Math.random() * 100 + '%';
+      s.style.animationDuration = (Math.random() * 8 + 6) + 's';
+      s.style.animationDelay    = Math.random() * 6 + 's';
+      s.style.opacity   = Math.random() * 0.5 + 0.5;
+      starContainer.appendChild(s);
     }
-
-    // Create leaves continuously
-    setInterval(createLeaf, 3000); // Adjust the interval as needed
   </script>
 </body>
 </html>
