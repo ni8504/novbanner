@@ -1,63 +1,33 @@
-<!DOCTYPE html>
+v<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>FitClub • Memorial Day Sale Banner</title>
-
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-
   <style>
-    /* ---------- RESET ---------- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; font-family: 'Montserrat', sans-serif; }
-
-    /* ---------- CONTAINER ---------- */
-    .banner-container {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: hidden;
-      color: #ffffff;
-    }
-
-    /* ---------- BACKGROUND ---------- */
-    .banner-background {
-      position: absolute;
-      inset: 0;
-      /* Patriotic red‑white‑blue gradient */
-      background: linear-gradient(120deg,#b22234 0%,#b22234 33%,#ffffff 33%,#ffffff 66%,#3c3b6e 66%,#3c3b6e 100%);
-      background-size: 200% 200%;
-      animation: wave 20s ease infinite; /* slow waving stripes */
-      z-index: 0;
-    }
-    @keyframes wave { 0% { background-position: 0 0;} 50% { background-position: 100% 100%; } 100% { background-position: 0 0;} }
-
-    /* ---------- FALLING STARS ---------- */
-    .stars { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
-    .star  { position: absolute; top: -10%; user-select: none; animation: fall linear infinite; transform-origin: center; }
-    @keyframes fall { 0% { transform: translateY(0) rotate(0deg);} 100% { transform: translateY(110vh) rotate(360deg);} }
-
-    /* ---------- CONTENT ---------- */
-    .banner-content { position: relative; z-index: 2; max-width: 800px; padding: 20px; }
-    .main-message  { font-size: 3em; margin-bottom: 0.5em; text-shadow: 2px 2px 8px rgba(0,0,0,0.6); padding: 0 20px; }
-    .highlights    { font-size: 1.5em; line-height: 1.4; padding: 0 20px; }
-    .highlights div { margin-bottom: 0.5em; }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) { .main-message { font-size: 2em; } .highlights { font-size: 1.2em; } }
-    @media (max-width: 480px) { .main-message { font-size: 1.5em; } .highlights { font-size: 1em; } }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif}
+    .banner-container{position:relative;width:100%;min-height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;overflow:hidden;color:#fff}
+    /* PATRIOTIC BACKGROUND */
+    .banner-background{position:absolute;inset:0;background:linear-gradient(120deg,#b22234 0%,#b22234 33%,#ffffff 33%,#ffffff 66%,#3c3b6e 66%,#3c3b6e 100%);background-size:200% 200%;animation:wave 20s ease infinite;z-index:0}
+    @keyframes wave{0%{background-position:0 0}50%{background-position:100% 100%}100%{background-position:0 0}}
+    /* FALLING STARS */
+    .stars{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .star{position:absolute;top:-10%;user-select:none;animation:fall linear infinite;transform-origin:center}
+    @keyframes fall{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(110vh) rotate(360deg)}}
+    /* CONTENT */
+    .banner-content{position:relative;z-index:2;max-width:800px;padding:20px}
+    .main-message{font-size:3em;margin-bottom:.5em;color:#fff;text-shadow:3px 3px 8px rgba(0,0,0,.7);padding:0 20px}
+    .highlights{font-size:1.5em;line-height:1.4;color:#00264d;padding:0 20px}
+    .highlights div{margin-bottom:.5em;text-shadow:1px 1px 3px rgba(255,255,255,.6)}
+    @media(max-width:768px){.main-message{font-size:2em}.highlights{font-size:1.2em}}
+    @media(max-width:480px){.main-message{font-size:1.5em}.highlights{font-size:1em}}
   </style>
 </head>
 <body>
   <div class="banner-container">
     <div class="banner-background"></div>
     <div class="stars" aria-hidden="true"></div>
-
     <div class="banner-content">
       <div class="main-message">Memorial Day Sale • One Day Only!</div>
       <div class="highlights">
@@ -68,20 +38,18 @@
       </div>
     </div>
   </div>
-
-  <!-- STAR GENERATOR -->
   <script>
-    const starContainer = document.querySelector('.stars');
-    const starCount = 60;
-    for (let i = 0; i < starCount; i++) {
-      const s = document.createElement('div');
-      s.className = 'star';
-      s.textContent = '⭐';
-      s.style.fontSize = (Math.random() * 1.1 + 0.5) + 'em';
-      s.style.left      = Math.random() * 100 + '%';
-      s.style.animationDuration = (Math.random() * 8 + 6) + 's';
-      s.style.animationDelay    = Math.random() * 6 + 's';
-      s.style.opacity   = Math.random() * 0.5 + 0.5;
+    const starContainer=document.querySelector('.stars');
+    const starCount=60;
+    for(let i=0;i<starCount;i++){
+      const s=document.createElement('div');
+      s.className='star';
+      s.textContent='⭐';
+      s.style.fontSize=(Math.random()*1.1+.5)+'em';
+      s.style.left=Math.random()*100+'%';
+      s.style.animationDuration=(Math.random()*8+6)+'s';
+      s.style.animationDelay=Math.random()*6+'s';
+      s.style.opacity=Math.random()*.5+.5;
       starContainer.appendChild(s);
     }
   </script>
