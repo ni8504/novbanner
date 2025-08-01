@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FitClub • July Freedom‑Fit Banner</title>
+  <title>FitClub • August Heatwave Banner</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -12,68 +12,68 @@
     .banner-container{
       position:relative;width:100%;min-height:100vh;
       display:flex;justify-content:center;align-items:center;text-align:center;
-      overflow:hidden;color:#00264d; /* navy */
+      overflow:hidden;color:#4e2600; /* warm brown for contrast */
     }
 
     /* ---------- BACKGROUND ---------- */
     .banner-background{
       position:absolute;inset:0;
-      background:linear-gradient(135deg,#fff4e6 0%,#b3e5fc 100%); /* warm peach ➜ sky blue */
+      background:linear-gradient(135deg,#fff7ae 0%,#ffb56b 50%,#ff8a65 100%); /* sunrise yellow ➜ sunset coral */
       z-index:0;
     }
-    /* Fireworks overlay */
+    /* Subtle beach overlay */
     .banner-background::after{
       content:"";position:absolute;inset:0;
-      background:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=60');
+      background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=60');
       background-size:cover;background-position:center;opacity:0.25;filter:blur(2px);
     }
 
-    /* ---------- FLOATING FIREWORKS ---------- */
-    .sparks{position:absolute;inset:0;pointer-events:none;z-index:1}
-    .spark{position:absolute;top:-10%;user-select:none;animation:float linear infinite;transform-origin:center}
+    /* ---------- FLOATING SUNS ---------- */
+    .suns{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .sun{position:absolute;top:-10%;user-select:none;animation:float linear infinite;transform-origin:center}
     @keyframes float{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(110vh) rotate(360deg)}}
 
     /* ---------- CONTENT ---------- */
-    .banner-content{position:relative;z-index:2;max-width:830px;padding:20px}
-    .main-message{font-size:3em;margin-bottom:.5em;text-shadow:2px 2px 6px rgba(255,255,255,.85);padding:0 20px}
+    .banner-content{position:relative;z-index:2;max-width:840px;padding:20px}
+    .main-message{font-size:3em;margin-bottom:.5em;text-shadow:2px 2px 6px rgba(255,255,255,.9);padding:0 20px}
     .highlights{font-size:1.5em;line-height:1.4;padding:0 20px}
-    .highlights div{margin-bottom:.5em;text-shadow:1px 1px 3px rgba(255,255,255,.8)}
+    .highlights div{margin-bottom:.5em;text-shadow:1px 1px 3px rgba(255,255,255,.85)}
 
     /* ---------- RESPONSIVE ---------- */
-    @media(max-width:768px){.main-message{font-size:2em}.highlights{font-size:1.2em}}
-    @media(max-width:480px){.main-message{font-size:1.5em}.highlights{font-size:1em}}
+    @media(max-width:768px){.main-message{font-size:2.1em}.highlights{font-size:1.2em}}
+    @media(max-width:480px){.main-message{font-size:1.6em}.highlights{font-size:1em}}
   </style>
 </head>
 <body>
   <div class="banner-container">
     <div class="banner-background"></div>
-    <div class="sparks" aria-hidden="true"></div>
+    <div class="suns" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <div class="main-message">July Spark‑Start • Enroll for $49!</div>
+      <div class="main-message">August Heatwave • Enroll for $29!</div>
       <div class="highlights">
-        <div>🎆 <strong>$49</strong> to enroll today</div>
-        <div>📅 First payment <strong>July 31st</strong></div>
+        <div>🔥 <strong>$29</strong> to enroll today</div>
+        <div>📅 First dues charged <strong>Aug 31&nbsp;2025</strong></div>
         <div>🏆 Voted Best Gym in Springfield</div>
       </div>
     </div>
   </div>
 
-  <!-- FIREWORKS GENERATOR -->
+  <!-- SUN GENERATOR -->
   <script>
-    const sparkContainer=document.querySelector('.sparks');
-    const sparkCount=60;
-    const icons=["🎇","🎆"];
-    for(let i=0;i<sparkCount;i++){
+    const sunContainer=document.querySelector('.suns');
+    const sunCount=60;
+    const icons=["☀️","🌞"];
+    for(let i=0;i<sunCount;i++){
       const s=document.createElement('div');
-      s.className='spark';
+      s.className='sun';
       s.textContent=icons[Math.floor(Math.random()*icons.length)];
       s.style.fontSize=(Math.random()*1.2+.6)+'em';
       s.style.left=Math.random()*100+'%';
       s.style.animationDuration=(Math.random()*9+7)+'s';
       s.style.animationDelay=Math.random()*10+'s';
       s.style.opacity=Math.random()*.4+.4;
-      sparkContainer.appendChild(s);
+      sunContainer.appendChild(s);
     }
   </script>
 </body>
