@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • October Fall Savings Banner</title>
+  <title>FitClub • NO FEAR Halloween Special</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <style>
     /* RESET */
@@ -13,93 +13,141 @@
     /* CONTAINER */
     .banner-container{
       position:relative;width:100%;
-      min-height:100vh; /* fallback */
-      min-height:100svh; /* small viewport units */
-      min-height:100dvh; /* dynamic viewport units */
-      display:flex;justify-content:center;align-items:center;text-align:center;overflow:hidden;color:#ffffff;
+      min-height:100vh;min-height:100svh;min-height:100dvh;
+      display:flex;justify-content:center;align-items:center;text-align:center;overflow:hidden;color:#fff;
       padding: clamp(12px, 2.5vw, 24px);
     }
 
-    /* BACKGROUND — cozy fall gradient + subtle leaves photo */
+    /* BACKGROUND — haunted gradient */
     .banner-background{position:absolute;inset:0;z-index:0;
       background:
-        radial-gradient(1200px 700px at 15% -10%, rgba(217,119,6,.9) 0%, rgba(217,119,6,0) 60%), /* amber */
-        radial-gradient(1200px 700px at 85% 110%, rgba(124,45,18,.85) 0%, rgba(124,45,18,0) 60%), /* chestnut */
-        linear-gradient(135deg, #3f1d0b 0%, #6b2f16 50%, #3f1d0b 100%);
+        radial-gradient(1200px 700px at 15% -10%, rgba(255,140,0,.9) 0%, rgba(255,140,0,0) 60%),
+        radial-gradient(1200px 700px at 85% 110%, rgba(128,0,128,.9) 0%, rgba(128,0,128,0) 60%),
+        linear-gradient(135deg,#0b0a10 0%, #1a0f26 50%, #0b0a10 100%);
       background-repeat:no-repeat;background-size:120% 120%,120% 120%,100% 100%;
       animation:bgshift 28s ease-in-out infinite alternate;
     }
     @keyframes bgshift{0%{background-position:20% 0%, 80% 100%, 0% 0%}100%{background-position:0% 20%, 100% 80%, 100% 100%}}
-    .banner-background::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;
-      background:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=60') center/cover no-repeat; /* fall leaves */
-      filter:blur(1px) grayscale(12%);
-    }
 
-    /* FLOATING LEAVES */
-    .leaves{position:absolute;inset:0;pointer-events:none;z-index:1}
-    .leaf{position:absolute;top:-10%;user-select:none;animation:fall linear infinite;transform-origin:center;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
-    @keyframes fall{0%{transform:translate3d(0,-10%,0) rotate(0deg)}100%{transform:translate3d(var(--drift, 40px), 115vh, 0) rotate(540deg)}}
+    /* Cobweb corners */
+    .web{position:absolute;z-index:1;opacity:.22;}
+    .web.top-left{top:0;left:0;width:38vmin;height:38vmin;background:
+      radial-gradient(circle at 0 0,transparent 34%,rgba(255,255,255,.45) 34% 35%,transparent 35% 36%),
+      radial-gradient(circle at 0 0,transparent 46%,rgba(255,255,255,.45) 46% 47%,transparent 47% 48%),
+      radial-gradient(circle at 0 0,transparent 58%,rgba(255,255,255,.45) 58% 59%,transparent 59% 60%),
+      radial-gradient(circle at 0 0,transparent 70%,rgba(255,255,255,.45) 70% 71%,transparent 71% 72%);
+      background-repeat:no-repeat;background-size:100% 100%;}
+    .web.bottom-right{right:0;bottom:0;transform:scale(-1,-1);width:38vmin;height:38vmin;background:
+      radial-gradient(circle at 0 0,transparent 34%,rgba(255,255,255,.45) 34% 35%,transparent 35% 36%),
+      radial-gradient(circle at 0 0,transparent 46%,rgba(255,255,255,.45) 46% 47%,transparent 47% 48%),
+      radial-gradient(circle at 0 0,transparent 58%,rgba(255,255,255,.45) 58% 59%,transparent 59% 60%),
+      radial-gradient(circle at 0 0,transparent 70%,rgba(255,255,255,.45) 70% 71%,transparent 71% 72%);
+      background-repeat:no-repeat;background-size:100% 100%;}
+
+    /* FLYERS (bats + witches) — glide horizontally */
+    .flyers{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .flyer{position:absolute;user-select:none;will-change:transform,opacity;filter:drop-shadow(0 2px 2px rgba(0,0,0,.45));
+      animation-timing-function:linear;animation-iteration-count:infinite}
+
+    @keyframes fly-right{
+      0%{transform:translateX(-12vw) translateY(var(--yJitter,0)) scale(var(--scale,1));opacity:0}
+      5%{opacity:1}
+      95%{opacity:1}
+      100%{transform:translateX(112vw) translateY(var(--yJitter,0)) scale(var(--scale,1));opacity:0}
+    }
+    @keyframes fly-left{
+      0%{transform:translateX(112vw) translateY(var(--yJitter,0)) scale(var(--scale,1));opacity:0}
+      5%{opacity:1}
+      95%{opacity:1}
+      100%{transform:translateX(-12vw) translateY(var(--yJitter,0)) scale(var(--scale,1));opacity:0}
+    }
 
     /* CONTENT */
     .banner-content{position:relative;z-index:2;width:min(94vw, 1000px);padding: clamp(16px, 2.5vw, 32px);padding-top: calc(env(safe-area-inset-top, 0px) + clamp(16px, 2.5vw, 32px));margin-inline:auto}
 
+    /* Ribbon */
+    .ribbon{position:relative;display:inline-block;margin-bottom:12px;background:#ff9800;color:#1b1b1b;font-weight:800;padding:8px 16px;border-radius:999px;letter-spacing:.15em;text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+    .ribbon::before,.ribbon::after{content:"";position:absolute;top:50%;width:18px;height:18px;background:#ff9800;transform:translateY(-50%) rotate(45deg)}
+    .ribbon::before{left:-9px} .ribbon::after{right:-9px}
+
     /* Headline */
-    .main-message{font-size:clamp(1.9rem, 5.4vw, 3.3rem);line-height:1.06;margin:.25em 0 .5em;text-shadow:0 6px 18px rgba(0,0,0,.65)}
-    .accent{background:linear-gradient(90deg,#fde68a,#f59e0b,#fde68a);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .main-message{font-size:clamp(1.9rem, 5.4vw, 3.4rem);line-height:1.06;margin:.25em 0 .5em;text-shadow:0 8px 22px rgba(0,0,0,.7)}
+    .accent{background:linear-gradient(90deg,#ffcc80,#ff9800,#ffcc80);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-    /* Offer card (glass) */
-    .offer-card{display:inline-block;margin:0 auto;padding:clamp(14px, 2vw, 22px) clamp(16px, 2.4vw, 26px);border-radius:18px;background:rgba(0,0,0,.32);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.22);box-shadow:0 16px 40px rgba(0,0,0,.35);max-width:min(92vw,760px)}
+    /* Offer card */
+    .offer-card{display:inline-block;margin:0 auto;padding:clamp(14px, 2vw, 22px) clamp(16px, 2.4vw, 26px);border-radius:18px;background:rgba(0,0,0,.36);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.22);box-shadow:0 16px 40px rgba(0,0,0,.4);max-width:min(92vw,760px)}
     .highlights{font-size:clamp(1.05rem, 2.2vw, 1.5rem);line-height:1.45}
-    .highlights div{margin:.35em 0;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+    .highlights div{margin:.35em 0;text-shadow:0 2px 10px rgba(0,0,0,.7)}
 
-    /* Date pill */
-    .date-pill{display:inline-block;margin-top:.5em;padding:.35em .75em;border-radius:999px;background:#fde68a;color:#1b1b1b;font-weight:800;box-shadow:0 8px 18px rgba(0,0,0,.35)}
+    /* Countdown */
+    .countdown{display:inline-block;margin-top:14px;padding:.5em .9em;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);font-weight:900;font-size:clamp(1.1rem, 3vw, 1.6rem);letter-spacing:.02em;box-shadow:0 8px 18px rgba(0,0,0,.35)}
 
-    /* Reduced-motion accessibility */
+    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       .banner-background{animation:none}
-      .banner-background::after{animation:none}
-      .leaf{animation:none}
+      .flyer{animation:none}
     }
   </style>
 </head>
 <body>
   <div class="banner-container">
     <div class="banner-background"></div>
-    <div class="leaves" aria-hidden="true"></div>
+    <div class="web top-left" aria-hidden="true"></div>
+    <div class="web bottom-right" aria-hidden="true"></div>
+    <div class="flyers" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <h1 class="main-message"><span class="accent">Save $50</span> on Enrollment</h1>
+      <div class="ribbon">One Day Only</div>
+      <h1 class="main-message"><span class="accent">NO FEAR</span> Halloween Special</h1>
 
       <div class="offer-card">
         <div class="highlights">
-          <div>🍁 Take $50 off your enrollment—October only</div>
-          <div>📅 First month billed <strong>October 31, 2025</strong></div>
-          <div>📍 3 Springfield locations • Locally owned</div>
-          <div>🏆 Award‑winning team & welcoming community</div>
+          <div>🎃 Join today for just <strong>$10.31</strong></div>
+          <div>👻 Your <strong>first month is FREE</strong></div>
+          <div>🕸️ Spooky‑good savings, today only</div>
         </div>
-        <div class="date-pill">Offer ends October 31, 2025</div>
+        <div id="countdown" class="countdown" aria-live="polite"></div>
       </div>
     </div>
   </div>
 
-  <!-- LEAVES GENERATOR -->
+  <!-- FLYERS + COUNTDOWN -->
   <script>
-    const leafContainer=document.querySelector('.leaves');
-    const icons=['🍁','🍂','🍃'];
-    for(let i=0;i<70;i++){
+    // Bats & witches flying horizontally
+    const flyerContainer=document.querySelector('.flyers');
+    const icons=['🦇','🦇','🦇','🧙‍♀️','🧙‍♂️'];
+    for(let i=0;i<60;i++){
       const el=document.createElement('div');
-      el.className='leaf';
+      el.className='flyer';
       el.textContent=icons[Math.floor(Math.random()*icons.length)];
-      const size = Math.random()*1.1 + .6; // 0.6–1.7em
-      el.style.fontSize=size+'em';
-      el.style.left=Math.random()*100+'%';
+      // sizing & position
+      el.style.fontSize=(Math.random()*1.1+.6)+'em';
+      el.style.top=(5+Math.random()*85)+'%';
+      // direction & motion
+      const right=Math.random()<0.5;
+      el.style.animationName= right ? 'fly-right' : 'fly-left';
       el.style.animationDuration=(8+Math.random()*10)+'s';
       el.style.animationDelay=(Math.random()*8)+'s';
-      el.style.opacity=(Math.random()*.4+.55).toFixed(2);
-      el.style.setProperty('--drift',(Math.random()*140-70)+'px');
-      leafContainer.appendChild(el);
+      el.style.setProperty('--scale',(0.85+Math.random()*0.6).toFixed(2));
+      el.style.setProperty('--yJitter', (Math.random()*6-3)+'px');
+      flyerContainer.appendChild(el);
     }
+
+    // Countdown to local midnight (end of today)
+    const cd=document.getElementById('countdown');
+    function updateCountdown(){
+      const now=new Date();
+      const end=new Date();
+      end.setHours(24,0,0,0);
+      const diff=end-now;
+      if(diff<=0){cd.textContent='Offer expired';return}
+      const hrs=Math.floor(diff/3.6e6);
+      const mins=Math.floor((diff%3.6e6)/6e4);
+      const secs=Math.floor((diff%6e4)/1e3);
+      cd.textContent=`${hrs}h ${mins}m ${secs}s left today`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown,1000);
   </script>
 </body>
 </html>
