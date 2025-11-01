@@ -97,14 +97,14 @@
     <div class="flyers" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <div class="ribbon">One Day Only</div>
+      <div class="ribbon">Extended through Monday, November 3</div>
       <h1 class="main-message"><span class="accent">NO FEAR</span> Halloween Special</h1>
 
       <div class="offer-card">
         <div class="highlights">
           <div>🎃 Join today for just <strong>$10.31</strong></div>
           <div>👻 Your <strong>first month is FREE</strong></div>
-          <div>🕸️ Spooky‑good savings, today only</div>
+          <div>🕸️ Spooky‑good savings, through Nov 3</div>
         </div>
         <div id="countdown" class="countdown" aria-live="polite"></div>
       </div>
@@ -133,21 +133,19 @@
       flyerContainer.appendChild(el);
     }
 
-    // Countdown to local midnight (end of today)
+    // Countdown to offer end: 11:59 PM on Monday, Nov 3, 2025 (local time)
     const cd=document.getElementById('countdown');
+    const end=new Date(2025,10,4,0,0,0); // Month index: 10 = November; midnight start of Nov 4
     function updateCountdown(){
       const now=new Date();
-      const end=new Date();
-      end.setHours(24,0,0,0);
       const diff=end-now;
       if(diff<=0){cd.textContent='Offer expired';return}
       const hrs=Math.floor(diff/3.6e6);
       const mins=Math.floor((diff%3.6e6)/6e4);
       const secs=Math.floor((diff%6e4)/1e3);
-      cd.textContent=`${hrs}h ${mins}m ${secs}s left today`;
+      cd.textContent=`${hrs}h ${mins}m ${secs}s left`;
     }
-    updateCountdown();
-    setInterval(updateCountdown,1000);
+    updateCountdown();$1setInterval(updateCountdown,1000);
   </script>
 </body>
 </html>
