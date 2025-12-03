@@ -3,107 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • Holiday Banner</title>
+  <title>FitClub • Holiday Banner (Clean + Lights & Deeper Snow)</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <style>
+    /* RESET */
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif}
 
+    /* CONTAINER */
     .banner-container{
       position:relative;width:100%;
       min-height:100vh;min-height:100svh;min-height:100dvh;
-      display:flex;justify-content:center;align-items:center;text-align:center;overflow:hidden;color:#fff;
+      display:flex;justify-content:center;align-items:center;text-align:center;overflow:hidden;color:#ffffff;
       padding: clamp(12px, 2.5vw, 24px);
-      background:#07121f;
     }
 
-    /* Night sky with aurora hint */
-    .sky{position:absolute;inset:0;z-index:0;
+    /* BACKGROUND — calm winter gradient, subtle motion */
+    .banner-background{position:absolute;inset:0;z-index:0;
       background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(93,188,210,.45) 0%, rgba(93,188,210,0) 60%),
-        radial-gradient(1200px 700px at 80% 110%, rgba(140,220,255,.35) 0%, rgba(140,220,255,0) 60%),
-        linear-gradient(180deg,#06101c 0%, #0a1c2d 60%, #0b1d2d 100%);
-      animation:skyShift 36s ease-in-out infinite alternate;
+        radial-gradient(1200px 700px at 18% -10%, rgba(99,179,237,.85) 0%, rgba(99,179,237,0) 60%),
+        radial-gradient(1200px 700px at 85% 110%, rgba(34,113,179,.85) 0%, rgba(34,113,179,0) 60%),
+        linear-gradient(135deg, #0e1f3a 0%, #122a4d 50%, #0e1f3a 100%);
+      background-repeat:no-repeat;background-size:120% 120%,120% 120%,100% 100%;
+      animation:bgshift 28s ease-in-out infinite alternate;
     }
-    @keyframes skyShift{0%{background-position:20% 0%,80% 100%,0 0}100%{background-position:0 20%,100% 80%,0 100%}}
+    @keyframes bgshift{0%{background-position:20% 0%, 80% 100%, 0% 0%}100%{background-position:0% 20%, 100% 80%, 100% 100%}}
 
-    /* Stars */
-    .stars{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.2;background-image:
-      radial-gradient(#fff 1px, transparent 1px),radial-gradient(#fff 1px, transparent 1px);
-      background-size: 3px 3px, 2px 2px; background-position: 0 0, 1px 1px;}
+    /* Frosted texture */
+    .banner-background::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.1;
+      background-image: radial-gradient(#ffffff 1px, transparent 1px);
+      background-size: 16px 16px; mix-blend-mode:screen;animation:twinkle 3.5s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle{from{opacity:.06}to{opacity:.14}}
 
-    /* Mountain + trees silhouettes */
-    .horizon{position:absolute;left:0;right:0;bottom:0;height:48vh;z-index:2;
-      background:linear-gradient(180deg, transparent 0%, rgba(7,18,31,.2) 30%, rgba(7,18,31,1) 100%)}
+    /* STRING LIGHTS */
+    .string-lights{
+      position:absolute; top:0; left:0; right:0; height:90px; z-index:2; pointer-events:none;
+      background:
+        radial-gradient(circle at 5% 60%, #ffd54f 0 6px, transparent 8px),
+        radial-gradient(circle at 15% 70%, #ffffff 0 6px, transparent 8px),
+        radial-gradient(circle at 25% 55%, #ff8a65 0 6px, transparent 8px),
+        radial-gradient(circle at 35% 75%, #b9e6ff 0 6px, transparent 8px),
+        radial-gradient(circle at 45% 60%, #ffd54f 0 6px, transparent 8px),
+        radial-gradient(circle at 55% 70%, #ffffff 0 6px, transparent 8px),
+        radial-gradient(circle at 65% 55%, #ff8a65 0 6px, transparent 8px),
+        radial-gradient(circle at 75% 75%, #b9e6ff 0 6px, transparent 8px),
+        radial-gradient(circle at 85% 60%, #ffd54f 0 6px, transparent 8px),
+        radial-gradient(circle at 95% 70%, #ffffff 0 6px, transparent 8px);
+      mask: linear-gradient(#000,#000) top / 100% 1px no-repeat; /* faux garland line */
+      animation: lightsTwinkle 3.8s ease-in-out infinite alternate;
+    }
+    @keyframes lightsTwinkle { from { opacity:.7 } to { opacity:1 } }
 
-    .trees-back{position:absolute;left:0;right:0;bottom:0;height:42vh;z-index:3;opacity:.75;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="400" viewBox="0 0 1600 400"><g fill="%2310283c" opacity="0.8"><path d="M0 360 L40 300 L80 360 Z"/><path d="M70 365 L110 295 L150 365 Z"/><path d="M140 355 L180 285 L220 355 Z"/><path d="M210 370 L250 290 L290 370 Z"/><path d="M280 360 L320 285 L360 360 Z"/><path d="M350 365 L390 295 L430 365 Z"/><path d="M420 355 L460 285 L500 355 Z"/><path d="M490 370 L530 290 L570 370 Z"/><path d="M560 360 L600 285 L640 360 Z"/><path d="M630 365 L670 295 L710 365 Z"/><path d="M700 355 L740 285 L780 355 Z"/><path d="M770 370 L810 290 L850 370 Z"/><path d="M840 360 L880 285 L920 360 Z"/><path d="M910 365 L950 295 L990 365 Z"/><path d="M980 355 L1020 285 L1060 355 Z"/><path d="M1050 370 L1090 290 L1130 370 Z"/><path d="M1120 360 L1160 285 L1200 360 Z"/><path d="M1190 365 L1230 295 L1270 365 Z"/><path d="M1260 355 L1300 285 L1340 355 Z"/><path d="M1330 370 L1370 290 L1410 370 Z"/><path d="M1400 360 L1440 285 L1480 360 Z"/><path d="M1470 365 L1510 295 L1550 365 Z"/></g></svg>') repeat-x bottom/auto 100%;
-      animation:parallaxBack 90s linear infinite}
-    @keyframes parallaxBack{from{background-position-x:0}to{background-position-x:-1600px}}
+    /* SNOW (two layers for depth, clean dots) */
+    .snow{position:absolute;inset:0;pointer-events:none}
+    .snow.back{ z-index:1; opacity:.55 }
+    .snow.front{ z-index:3; opacity:.95 }
 
-    .trees-front{position:absolute;left:0;right:0;bottom:0;height:34vh;z-index:4;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="300" viewBox="0 0 1600 300"><g fill="%2308192a"><path d="M0 270 L30 210 L60 270 Z"/><path d="M45 275 L75 205 L105 275 Z"/><path d="M95 265 L125 200 L155 265 Z"/><path d="M145 278 L175 205 L205 278 Z"/><path d="M195 270 L225 205 L255 270 Z"/><path d="M245 276 L275 208 L305 276 Z"/><path d="M295 268 L325 202 L355 268 Z"/><path d="M345 280 L375 205 L405 280 Z"/>
-      <path d="M395 270 L425 205 L455 270 Z"/><path d="M445 276 L475 208 L505 276 Z"/><path d="M495 268 L525 202 L555 268 Z"/><path d="M545 280 L575 205 L605 280 Z"/><path d="M595 270 L625 205 L655 270 Z"/><path d="M645 276 L675 208 L705 276 Z"/><path d="M695 268 L725 202 L755 268 Z"/><path d="M745 280 L775 205 L805 280 Z"/><path d="M795 270 L825 205 L855 270 Z"/></g></svg>') repeat-x bottom/auto 100%;
-      animation:parallaxFront 60s linear infinite}
-    @keyframes parallaxFront{from{background-position-x:0}to{background-position-x:-1600px}}
+    .flake{position:absolute;top:-8%;width:6px;height:6px;border-radius:50%;background:#fff;opacity:.9;animation:fall linear infinite}
+    .flake.sm{width:2px;height:2px;opacity:.7}
+    .flake.md{width:4px;height:4px;opacity:.8}
+    .flake.lg{width:8px;height:8px;opacity:.95}
+    .flake.front{ filter:drop-shadow(0 1px 2px rgba(0,0,0,.25)) }
+    .flake.back{ transform: scale(.8) }
+    @keyframes fall{0%{transform:translate3d(0,-8%,0)}100%{transform:translate3d(var(--drift, 40px), 110vh, 0)}}
 
-    /* Snowfall */
-    .snow{position:absolute;inset:0;pointer-events:none;z-index:5}
-    .flake{position:absolute;top:-5%;user-select:none;animation:fall linear infinite;opacity:.9;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
-    @keyframes fall{0%{transform:translate3d(0,-5%,0) rotate(0)}100%{transform:translate3d(var(--drift,40px), 110vh, 0) rotate(720deg)}}
+    /* CONTENT */
+    .banner-content{position:relative;z-index:4;width:min(94vw, 1000px);padding: clamp(16px, 2.5vw, 32px);margin-inline:auto}
 
-    /* Content */
-    .banner-content{position:relative;z-index:6;width:min(94vw, 1000px);padding: clamp(16px, 2.5vw, 32px);margin-inline:auto}
-    .kicker{font-size:clamp(.9rem,2.2vw,1.05rem);letter-spacing:.22em;text-transform:uppercase;color:#b9e6ff;margin-bottom:.4em;opacity:.95}
-    .main-message{font-size:clamp(2rem,5.6vw,3.6rem);line-height:1.04;margin:.1em 0 .35em;text-shadow:0 10px 26px rgba(0,0,0,.65)}
+    /* Ribbon tag */
+    .ribbon{position:relative;display:inline-block;margin-bottom:12px;background:#b9e6ff;color:#0c2137;font-weight:800;padding:8px 16px;border-radius:999px;letter-spacing:.15em;text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+    .ribbon::before,.ribbon::after{content:"";position:absolute;top:50%;width:18px;height:18px;background:#b9e6ff;transform:translateY(-50%) rotate(45deg)}
+    .ribbon::before{left:-9px} .ribbon::after{right:-9px}
+
+    /* Headline (tighter, higher contrast) */
+    .main-message{font-size:clamp(2.2rem, 5.6vw, 3.6rem);line-height:1.04;margin:.28em 0 .5em;text-shadow:0 8px 22px rgba(0,0,0,.55)}
     .accent{background:linear-gradient(90deg,#e0f7ff,#b9e6ff,#e0f7ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .highlights{font-size:clamp(1.05rem, 2.2vw, 1.5rem);line-height:1.45;opacity:.96}
-    .highlights div{margin:.3em 0;text-shadow:0 2px 10px rgba(0,0,0,.6)}
 
-    /* Accessibility */
+    /* Card (glass), slightly brighter for readability */
+    .card{display:inline-block;margin:0 auto;padding:clamp(14px, 2vw, 22px) clamp(16px, 2.4vw, 28px);border-radius:18px;background:rgba(0,0,0,.38);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.22);box-shadow:0 16px 40px rgba(0,0,0,.35);max-width:min(92vw,820px)}
+    .highlights{font-size:clamp(1.1rem, 2.3vw, 1.55rem);line-height:1.45}
+    .highlights div{margin:.35em 0;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+
+    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
-      .sky{animation:none}
-      .trees-back,.trees-front{animation:none}
+      .banner-background{animation:none}
+      .string-lights{animation:none}
       .flake{animation:none}
     }
   </style>
 </head>
 <body>
   <div class="banner-container">
-    <div class="sky"></div>
-    <div class="stars" aria-hidden="true"></div>
-    <div class="horizon" aria-hidden="true"></div>
-    <div class="trees-back" aria-hidden="true"></div>
-    <div class="trees-front" aria-hidden="true"></div>
-    <div class="snow" aria-hidden="true"></div>
+    <div class="banner-background"></div>
+
+    <div class="string-lights" aria-hidden="true"></div>
+    <div class="snow back" aria-hidden="true"></div>
+    <div class="snow front" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <div class="kicker">Season's Greetings</div>
+      <div class="ribbon">Holiday Season</div>
       <h1 class="main-message">Happy Holidays from <span class="accent">FitClub</span></h1>
-      <div class="highlights">
-        <div>❄️ Let it snow. We’ll keep you moving.</div>
-        <div>🌲 Strong body, cheerful spirit.</div>
-        <div>🎁 Gift yourself consistency this season.</div>
+      <div class="card">
+        <div class="highlights">
+          <div>❄️ Snow out there, warm welcome in here</div>
+          <div>🌲 Keep the routine, enjoy the season</div>
+          <div>🏆 Voted Best in Springfield</div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    // Snow generator
-    const snow=document.querySelector('.snow');
-    const count=100; // adjust intensity
-    for(let i=0;i<count;i++){
-      const f=document.createElement('div');
-      f.className='flake';
-      f.textContent='❄';
-      f.style.left=Math.random()*100+'%';
-      f.style.fontSize=(Math.random()*1.1+.6)+'em';
-      f.style.animationDuration=(8+Math.random()*10)+'s';
-      f.style.animationDelay=(Math.random()*10)+'s';
-      f.style.opacity=(Math.random()*.5+.5).toFixed(2);
-      f.style.setProperty('--drift', (Math.random()*120-60)+'px');
-      snow.appendChild(f);
-    }
-  </script>
-</body>
-</html>
+    // Two-layer snow generator for depth
+    function makeSnow(sel, count){
+      const container=document.querySelector(sel);
+      for(let i=0;i<count;i++){
+        const f=document.createElement('span');
+        const mod = i%3===0?'lg': i%3===1?'md':'sm';
+        f.className = 'flake '+mod + (sel.includes('front')?' front':' back');
+        f.style.left = Math.random()*100+'%';
+        // Slower for back layer to create parallax feel
+        const speed = sel.includes('front')? (8+Math.random()*10) : (14+Math.random()*12);
+        f.style.animationDuration = speed+'s';
+        f.style.animationDelay = (Math.random()*10)+'s';
+        f.style.setProperty('--d
