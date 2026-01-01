@@ -1,205 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Responsive November Banner</title>
-
-  <!-- Include Google Fonts for Autumn-Themed Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FitClub • New Year 2026 Banner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <style>
-    /* Reset default margins and paddings */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif}
+
+    .banner-container{
+      position:relative;width:100%;
+      min-height:100vh;min-height:100svh;min-height:100dvh;
+      display:flex;justify-content:center;align-items:center;text-align:center;overflow:hidden;color:#ffffff;
+      padding: clamp(12px, 2.5vw, 24px);
     }
 
-    /* Remove body margins and set to fill the iframe */
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden; /* Prevent scrollbars */
+    /* Clean New-Year energy gradient */
+    .banner-background{position:absolute;inset:0;z-index:0;
+      background:
+        radial-gradient(1200px 700px at 15% -10%, rgba(255,215,0,.35) 0%, rgba(255,215,0,0) 60%),
+        radial-gradient(1200px 700px at 85% 110%, rgba(56,189,248,.45) 0%, rgba(56,189,248,0) 60%),
+        linear-gradient(135deg, #0b2149 0%, #0f2f5f 50%, #0b2149 100%);
+      background-repeat:no-repeat;background-size:120% 120%,120% 120%,100% 100%;
+      animation:bgshift 28s ease-in-out infinite alternate;
     }
+    @keyframes bgshift{0%{background-position:20% 0%, 80% 100%, 0% 0%}100%{background-position:0% 20%, 100% 80%, 100% 100%}}
 
-    /* Banner Container */
-    .banner-container {
-      position: relative;
-      width: 100%;
-      height: 100vh; /* Set height to viewport height */
-      overflow: hidden;
-    }
+    /* Subtle sparkle */
+    .banner-background::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;
+      background-image: radial-gradient(#ffffff 1px, transparent 1px);
+      background-size: 18px 18px; mix-blend-mode:screen;}
 
-    /* Banner Image */
-    .banner-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Ensures the image fills the container */
-      object-position: center;
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0; /* Background image at the lowest layer */
-    }
+    /* Floating sparks */
+    .sparks{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .spark{position:absolute;top:-10%;width:6px;height:6px;border-radius:50%;background:#fff;opacity:.85;animation:rise linear infinite}
+    @keyframes rise{0%{transform:translateY(0)}100%{transform:translateY(-110vh)}}
 
-    /* Overlay Text with Enhanced Styling */
-    .banner-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #8B4513; /* Dark brown color */
-      text-align: center;
-      /* Warm Glow */
-      text-shadow:
-        0 0 5px #FF8C00,
-        0 0 10px #FFA500,
-        0 0 15px #FFD700;
-      padding: 8px 16px;
-      width: 90%;
-      max-width: 800px;
-      z-index: 2;
-      font-family: 'Crimson Pro', serif; /* Autumn-themed font */
-    }
+    .banner-content{position:relative;z-index:2;width:min(94vw, 1000px);padding: clamp(16px, 2.5vw, 32px);margin-inline:auto}
 
-    .banner-text h1 {
-      font-size: 3.5em; /* Increased font size */
-      margin-bottom: 0.5em;
-    }
+    .kicker{font-size:clamp(.9rem,2.2vw,1.05rem);letter-spacing:.25em;text-transform:uppercase;color:#fde68a;margin-bottom:.4em}
 
-    .banner-text p {
-      font-size: 2.5em; /* Increased font size */
-    }
+    .main-message{font-size:clamp(2.1rem, 5.8vw, 3.7rem);line-height:1.05;margin:.2em 0 .5em;text-shadow:0 10px 28px rgba(0,0,0,.65)}
+    .accent{background:linear-gradient(90deg,#fde68a,#facc15,#fde68a);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-    /* Falling Leaves */
-    .leaf {
-      position: absolute;
-      top: -10%; /* Start above the banner */
-      width: var(--leaf-size, 80px);
-      height: auto;
-      opacity: 0.9;
-      z-index: 1; /* Leaves are behind the text */
-      transform-origin: center;
-    }
+    .card{display:inline-block;margin:0 auto;padding:clamp(14px, 2vw, 22px) clamp(16px, 2.4vw, 28px);border-radius:18px;background:rgba(0,0,0,.32);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.18);box-shadow:0 16px 40px rgba(0,0,0,.35);max-width:min(92vw,820px)}
 
-    /* Leaf Animation */
-    @keyframes fall {
-      0% {
-        transform: translateX(0) rotate(0deg);
-        top: -10%;
-      }
-      100% {
-        transform: translateX(1px) rotate(360deg);
-        top: calc(100% - 50px); /* Settle at the bottom */
-      }
-    }
+    .highlights{font-size:clamp(1.1rem, 2.3vw, 1.6rem);line-height:1.5}
+    .highlights div{margin:.4em 0;text-shadow:0 2px 12px rgba(0,0,0,.6)}
 
-    /* Ensure the leaf stays at the final position */
-    .leaf {
-      animation-fill-mode: forwards;
-    }
-
-    /* Responsive Adjustments */
-
-    /* Tablets and Small Desktops */
-    @media (max-width: 1024px) {
-      .banner-text h1 {
-        font-size: 3em;
-      }
-
-      .banner-text p {
-        font-size: 2em;
-      }
-    }
-
-    /* Mobile Devices */
-    @media (max-width: 768px) {
-      .banner-text h1 {
-        font-size: 2.5em;
-      }
-
-      .banner-text p {
-        font-size: 1.8em;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .banner-text h1 {
-        font-size: 2em;
-      }
-
-      .banner-text p {
-        font-size: 1.5em;
-      }
+    @media (prefers-reduced-motion: reduce){
+      .banner-background{animation:none}
+      .spark{animation:none}
     }
   </style>
 </head>
 <body>
   <div class="banner-container">
-    <!-- Background Image -->
-    <img
-      src="https://www.fitclub.net/sites/ob-143.app.sitewright.io/files/image/2024-09/west%20weights2%20%281%29.JPG"
-      alt="November Banner"
-      class="banner-image"
-    />
+    <div class="banner-background"></div>
+    <div class="sparks" aria-hidden="true"></div>
 
-    <!-- Text Overlay -->
-    <div class="banner-text">
-      <h1>🍁 Fall into Fitness this November! 🍁</h1>
-      <p>FitClub is here to help you stay active before the holidays! 🏋️‍♂️</p>
+    <div class="banner-content">
+      <div class="kicker">New Year. New Momentum.</div>
+      <h1 class="main-message">Start 2026 <span class="accent">Strong</span></h1>
+      <div class="card">
+        <div class="highlights">
+          <div>🔥 Secure your membership for just <strong>$20.26</strong></div>
+          <div>⏳ Train now — <strong>no dues until January 31st</strong></div>
+          <div>💪 Build habits before the year even begins</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- JavaScript for Falling Leaves -->
   <script>
-    const bannerContainer = document.querySelector('.banner-container');
-
-    // Array of leaf image URLs
-    const leafImages = [
-      'https://clipart-library.com/images_k/maple-leaf-transparent-background/maple-leaf-transparent-background-19.png',
-      'https://clipart-library.com/images_k/maple-leaf-transparent/maple-leaf-transparent-18.png',
-      'https://static.vecteezy.com/system/resources/previews/036/421/364/non_2x/ai-generated-red-autumn-oak-leaf-isolated-on-transparent-background-free-png.pngg',
-      // Add more leaf image URLs as needed
-    ];
-
-    function createLeaf() {
-      const leaf = document.createElement('img');
-      leaf.classList.add('leaf');
-
-      // Randomly select a leaf image
-      const imgSrc = leafImages[Math.floor(Math.random() * leafImages.length)];
-      leaf.src = imgSrc;
-
-      const size = 60 + Math.random() * 40; // Leaf size between 60px and 100px
-      leaf.style.setProperty('--leaf-size', `${size}px`);
-
-      // Randomize starting position and delay
-      const leftPosition = Math.random() * 100; // Percentage
-      const animationDuration = 5 + Math.random() * 5; // 5s to 10s
-      const delay = Math.random() * 5; // 0s to 5s
-
-      leaf.style.left = `${leftPosition}%`;
-      leaf.style.animation = `fall ${animationDuration}s linear ${delay}s forwards`;
-
-      bannerContainer.appendChild(leaf);
-
-      // Ensure the leaf stays at the final position after animation
-      leaf.addEventListener('animationend', () => {
-        // Remove the animation to prevent further changes
-        leaf.style.animation = 'none';
-        // Set the final position and rotation
-        leaf.style.top = 'calc(100% - 50px)';
-        leaf.style.transform = 'rotate(360deg)';
-      });
+    const sparks=document.querySelector('.sparks');
+    for(let i=0;i<80;i++){
+      const s=document.createElement('span');
+      s.className='spark';
+      s.style.left=Math.random()*100+'%';
+      s.style.animationDuration=(10+Math.random()*12)+'s';
+      s.style.animationDelay=(Math.random()*10)+'s';
+      sparks.appendChild(s);
     }
-
-    // Create leaves continuously
-    setInterval(createLeaf, 1000); // Adjust the interval as needed
   </script>
 </body>
 </html>
