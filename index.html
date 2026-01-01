@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • End-of-Year 2025 Special</title>
+  <title>FitClub • January 2026 New Year Banner</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <style>
-    /* RESET */
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif}
 
-    /* CONTAINER */
     .banner-container{
       position:relative;width:100%;
       min-height:100vh;min-height:100svh;min-height:100dvh;
@@ -18,105 +16,73 @@
       padding: clamp(12px, 2.5vw, 24px);
     }
 
-    /* BACKGROUND — winter gradient w/ subtle motion */
+    /* Clean New-Year energy gradient */
     .banner-background{position:absolute;inset:0;z-index:0;
       background:
-        radial-gradient(1200px 700px at 18% -10%, rgba(99,179,237,.85) 0%, rgba(99,179,237,0) 60%),
-        radial-gradient(1200px 700px at 85% 110%, rgba(34,113,179,.85) 0%, rgba(34,113,179,0) 60%),
-        linear-gradient(135deg, #0e1f3a 0%, #122a4d 50%, #0e1f3a 100%);
+        radial-gradient(1200px 700px at 15% -10%, rgba(255,215,0,.35) 0%, rgba(255,215,0,0) 60%),
+        radial-gradient(1200px 700px at 85% 110%, rgba(56,189,248,.45) 0%, rgba(56,189,248,0) 60%),
+        linear-gradient(135deg, #0b2149 0%, #0f2f5f 50%, #0b2149 100%);
       background-repeat:no-repeat;background-size:120% 120%,120% 120%,100% 100%;
       animation:bgshift 28s ease-in-out infinite alternate;
     }
     @keyframes bgshift{0%{background-position:20% 0%, 80% 100%, 0% 0%}100%{background-position:0% 20%, 100% 80%, 100% 100%}}
-    .banner-background::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.1;
+
+    /* Subtle sparkle */
+    .banner-background::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;
       background-image: radial-gradient(#ffffff 1px, transparent 1px);
-      background-size: 16px 16px; mix-blend-mode:screen;animation:twinkle 3.5s ease-in-out infinite alternate;
-    }
-    @keyframes twinkle{from{opacity:.06}to{opacity:.14}}
+      background-size: 18px 18px; mix-blend-mode:screen;}
 
-    /* SNOW (clean dots) */
-    .snow{position:absolute;inset:0;pointer-events:none;z-index:1}
-    .flake{position:absolute;top:-8%;width:6px;height:6px;border-radius:50%;background:#fff;opacity:.9;animation:fall linear infinite;filter:drop-shadow(0 1px 2px rgba(0,0,0,.2))}
-    .flake.sm{width:2px;height:2px;opacity:.7}
-    .flake.md{width:4px;height:4px;opacity:.8}
-    .flake.lg{width:8px;height:8px;opacity:.95}
-    @keyframes fall{0%{transform:translate3d(0,-8%,0)}100%{transform:translate3d(var(--drift, 40px), 110vh, 0)}}
+    /* Floating sparks */
+    .sparks{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .spark{position:absolute;top:-10%;width:6px;height:6px;border-radius:50%;background:#fff;opacity:.85;animation:rise linear infinite}
+    @keyframes rise{0%{transform:translateY(0)}100%{transform:translateY(-110vh)}}
 
-    /* CONTENT */
     .banner-content{position:relative;z-index:2;width:min(94vw, 1000px);padding: clamp(16px, 2.5vw, 32px);margin-inline:auto}
 
-    /* Ribbon tag */
-    .ribbon{position:relative;display:inline-block;margin-bottom:12px;background:#b9e6ff;color:#0c2137;font-weight:800;padding:8px 16px;border-radius:999px;letter-spacing:.15em;text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35)}
-    .ribbon::before,.ribbon::after{content:"";position:absolute;top:50%;width:18px;height:18px;background:#b9e6ff;transform:translateY(-50%) rotate(45deg)}
-    .ribbon::before{left:-9px} .ribbon::after{right:-9px}
+    .kicker{font-size:clamp(.9rem,2.2vw,1.05rem);letter-spacing:.25em;text-transform:uppercase;color:#fde68a;margin-bottom:.4em}
 
-    /* Headline */
-    .main-message{font-size:clamp(2rem, 5.6vw, 3.6rem);line-height:1.04;margin:.3em 0 .55em;text-shadow:0 10px 26px rgba(0,0,0,.6)}
-    .accent{background:linear-gradient(90deg,#e0f7ff,#b9e6ff,#e0f7ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .main-message{font-size:clamp(2.1rem, 5.8vw, 3.7rem);line-height:1.05;margin:.2em 0 .5em;text-shadow:0 10px 28px rgba(0,0,0,.65)}
+    .accent{background:linear-gradient(90deg,#fde68a,#facc15,#fde68a);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-    /* Card (glass) */
     .card{display:inline-block;margin:0 auto;padding:clamp(14px, 2vw, 22px) clamp(16px, 2.4vw, 28px);border-radius:18px;background:rgba(0,0,0,.32);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.18);box-shadow:0 16px 40px rgba(0,0,0,.35);max-width:min(92vw,820px)}
-    .highlights{font-size:clamp(1.05rem, 2.2vw, 1.5rem);line-height:1.5}
-    .highlights div{margin:.4em 0;text-shadow:0 2px 10px rgba(0,0,0,.6)}
 
-    /* Countdown */
-    .countdown{display:inline-block;margin-top:14px;padding:.5em .9em;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);font-weight:900;font-size:clamp(1.05rem, 3vw, 1.5rem);letter-spacing:.02em;box-shadow:0 8px 18px rgba(0,0,0,.35)}
+    .highlights{font-size:clamp(1.1rem, 2.3vw, 1.6rem);line-height:1.5}
+    .highlights div{margin:.4em 0;text-shadow:0 2px 12px rgba(0,0,0,.6)}
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       .banner-background{animation:none}
-      .flake{animation:none}
+      .spark{animation:none}
     }
   </style>
 </head>
 <body>
   <div class="banner-container">
     <div class="banner-background"></div>
-    <div class="snow" aria-hidden="true"></div>
+    <div class="sparks" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <div class="ribbon">End-of-Year Special • 2025</div>
-      <h1 class="main-message">Join Now for <span class="accent">$20.25</span></h1>
-
+      <div class="kicker">January 1, 2026</div>
+      <h1 class="main-message">Your Year Starts <span class="accent">Today</span></h1>
       <div class="card">
         <div class="highlights">
-          <div>🔒 Lock in current pricing before the January 1 increase!</div>
-          <div>🗓️ No monthly dues until <strong>January 31, 2026</strong></div>
+          <div>🎯 Kick off the year for just <strong>$20.26</strong></div>
+          <div>📆 Start training now — <strong>no dues until January 31st</strong></div>
+          <div>🚀 Don’t wait for momentum. Create it.</div>  
         </div>
-        <div id="countdown" class="countdown" aria-live="polite"></div>
       </div>
     </div>
   </div>
 
   <script>
-    // Snow generator
-    const snow=document.querySelector('.snow');
-    const flakes=110;
-    for(let i=0;i<flakes;i++){
-      const f=document.createElement('span');
-      f.className='flake ' + (i%3===0?'lg': i%3===1?'md':'sm');
-      f.style.left=Math.random()*100+'%';
-      f.style.animationDuration=(8+Math.random()*10)+'s';
-      f.style.animationDelay=(Math.random()*10)+'s';
-      f.style.setProperty('--drift', (Math.random()*120-60)+'px');
-      snow.appendChild(f);
+    const sparks=document.querySelector('.sparks');
+    for(let i=0;i<80;i++){
+      const s=document.createElement('span');
+      s.className='spark';
+      s.style.left=Math.random()*100+'%';
+      s.style.animationDuration=(10+Math.random()*12)+'s';
+      s.style.animationDelay=(Math.random()*10)+'s';
+      sparks.appendChild(s);
     }
-
-    // Countdown to 12:00 AM Jan 1, 2026 (local time)
-    const cd=document.getElementById('countdown');
-    const end=new Date(2026,0,1,0,0,0); // Jan=0
-    function updateCountdown(){
-      const now=new Date();
-      const diff=end-now;
-      if(diff<=0){cd.textContent='Rates have updated';return}
-      const days=Math.floor(diff/8.64e7);
-      const hrs=Math.floor((diff%8.64e7)/3.6e6);
-      const mins=Math.floor((diff%3.6e6)/6e4);
-      const secs=Math.floor((diff%6e4)/1e3);
-      cd.textContent = (days>0? days+'d ':'') + `${hrs}h ${mins}m ${secs}s to lock in`;
-    }
-    updateCountdown();
-    setInterval(updateCountdown,1000);
   </script>
 </body>
 </html>
