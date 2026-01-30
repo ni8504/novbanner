@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • New Year Kickoff Banner</title>ink href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+  <title>FitClub • January 2026 New Year Banner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif}
@@ -60,12 +61,24 @@
     <div class="sparks" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <div <div class="kicker">New Year Kickoff</div>ss="mai<h1 class="main-message">There’s Still Time to <span class="accent">Start Right</span></h1>ass="ca<div class="card">
+      <div class="kicker">New Year Momentum</div>
+      <h1 class="main-message">Make 2026 <span class="accent">Your Year</span></h1>
+      <div class="card">
         <div class="highlights">
-          <div>🔥 Get started for just <strong>$20.26</strong></div>
-          <div>🎁 Your <strong>first month is FREE</strong></div>
+          <div>🔥 Join now for just <strong>$20.26</strong></div>
         </div>
-      </div>.className='spark';
+          <div>📆 Start training now — <strong> get your first month FREE</strong></div>
+          <div>🚀 Don’t wait for momentum. Create it.</div>  
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sparks=document.querySelector('.sparks');
+    for(let i=0;i<80;i++){
+      const s=document.createElement('span');
+      s.className='spark';
       s.style.left=Math.random()*100+'%';
       s.style.animationDuration=(10+Math.random()*12)+'s';
       s.style.animationDelay=(Math.random()*10)+'s';
