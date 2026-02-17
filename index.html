@@ -3,147 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • Valentine’s Special</title>
+  <title>FitClub • New Year Kickoff Banner</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif}
 
     .banner-container{
-      position:relative;
-      width:100%;
+      position:relative;width:100%;
       min-height:100vh;min-height:100svh;min-height:100dvh;
-      display:flex;justify-content:center;align-items:center;text-align:center;
-      overflow:hidden;color:#ffffff;
-      padding:clamp(16px,3vw,40px);
+      display:flex;justify-content:center;align-items:center;text-align:center;overflow:hidden;color:#ffffff;
+      padding: clamp(12px, 2.5vw, 24px);
     }
 
-    /* Deep romantic gradient */
-    .banner-background{
-      position:absolute;inset:0;z-index:0;
+    /* Clean New-Year energy gradient */
+    .banner-background{position:absolute;inset:0;z-index:0;
       background:
-        radial-gradient(900px 600px at 20% 15%, rgba(255,105,180,.40) 0%, rgba(255,105,180,0) 60%),
-        radial-gradient(900px 600px at 80% 85%, rgba(220,38,127,.35) 0%, rgba(220,38,127,0) 60%),
-        linear-gradient(135deg,#3b001f 0%, #6a0038 50%, #3b001f 100%);
-      background-size:120% 120%,120% 120%,100% 100%;
-      animation:bgshift 26s ease-in-out infinite alternate;
+        radial-gradient(1200px 700px at 15% -10%, rgba(255,215,0,.35) 0%, rgba(255,215,0,0) 60%),
+        radial-gradient(1200px 700px at 85% 110%, rgba(56,189,248,.45) 0%, rgba(56,189,248,0) 60%),
+        linear-gradient(135deg, #0b2149 0%, #0f2f5f 50%, #0b2149 100%);
+      background-repeat:no-repeat;background-size:120% 120%,120% 120%,100% 100%;
+      animation:bgshift 28s ease-in-out infinite alternate;
     }
+    @keyframes bgshift{0%{background-position:20% 0%, 80% 100%, 0% 0%}100%{background-position:0% 20%, 100% 80%, 100% 100%}}
 
-    @keyframes bgshift{
-      0%{background-position:0% 0%,100% 100%,0% 0%}
-      100%{background-position:20% 20%,80% 80%,100% 100%}
-    }
+    /* Subtle sparkle */
+    .banner-background::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;
+      background-image: radial-gradient(#ffffff 1px, transparent 1px);
+      background-size: 18px 18px; mix-blend-mode:screen;}
 
-    /* Soft floating hearts */
-    .hearts{position:absolute;inset:0;pointer-events:none;z-index:1}
-    .heart{
-      position:absolute;
-      top:-10%;
-      font-size:clamp(14px,2vw,22px);
-      opacity:.18;
-      animation:float linear infinite;
-    }
+    /* Floating sparks */
+    .sparks{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .spark{position:absolute;top:-10%;width:6px;height:6px;border-radius:50%;background:#fff;opacity:.85;animation:rise linear infinite}
+    @keyframes rise{0%{transform:translateY(0)}100%{transform:translateY(-110vh)}}
 
-    @keyframes float{
-      0%{transform:translateY(0) rotate(0deg)}
-      100%{transform:translateY(115vh) rotate(360deg)}
-    }
+    .banner-content{position:relative;z-index:2;width:min(94vw, 1000px);padding: clamp(16px, 2.5vw, 32px);margin-inline:auto}
 
-    .banner-content{
-      position:relative;
-      z-index:2;
-      width:min(95vw,1000px);
-      margin:auto;
-    }
+    .kicker{font-size:clamp(.9rem,2.2vw,1.05rem);letter-spacing:.25em;text-transform:uppercase;color:#fde68a;margin-bottom:.4em}
 
-    .kicker{
-      font-size:clamp(.85rem,2vw,1rem);
-      letter-spacing:.35em;
-      text-transform:uppercase;
-      color:#ffd6e8;
-      margin-bottom:.6em;
-    }
+    .main-message{font-size:clamp(2.1rem, 5.8vw, 3.7rem);line-height:1.05;margin:.2em 0 .5em;text-shadow:0 10px 28px rgba(0,0,0,.65)}
+    .accent{background:linear-gradient(90deg,#fde68a,#facc15,#fde68a);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-    .main-message{
-      font-size:clamp(2.2rem,6vw,4rem);
-      line-height:1.05;
-      margin-bottom:.5em;
-      text-shadow:0 10px 28px rgba(0,0,0,.65);
-    }
+    .card{display:inline-block;margin:0 auto;padding:clamp(14px, 2vw, 22px) clamp(16px, 2.4vw, 28px);border-radius:18px;background:rgba(0,0,0,.32);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.18);box-shadow:0 16px 40px rgba(0,0,0,.35);max-width:min(92vw,820px)}
 
-    .accent{
-      background:linear-gradient(90deg,#ffc1d6,#ff80ab,#ffc1d6);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
-    .card{
-      display:inline-block;
-      padding:clamp(18px,3vw,30px);
-      border-radius:16px;
-      background:rgba(0,0,0,.45);
-      border:2px solid rgba(255,255,255,.25);
-      box-shadow:
-        inset 0 0 0 2px rgba(255,255,255,.08),
-        0 20px 50px rgba(0,0,0,.5);
-      max-width:min(92vw,820px);
-    }
-
-    .highlights{
-      font-size:clamp(1.1rem,2.4vw,1.6rem);
-      line-height:1.6;
-    }
-
-    .highlights div{
-      margin:.5em 0;
-      text-shadow:0 2px 12px rgba(0,0,0,.7);
-    }
-
-    .price{
-      font-size:clamp(2.4rem,5vw,3.5rem);
-      font-weight:900;
-      margin:.2em 0;
-      color:#ff80ab;
-      text-shadow:0 8px 18px rgba(0,0,0,.6);
-    }
+    .highlights{font-size:clamp(1.1rem, 2.3vw, 1.6rem);line-height:1.5}
+    .highlights div{margin:.4em 0;text-shadow:0 2px 12px rgba(0,0,0,.6)}
 
     @media (prefers-reduced-motion: reduce){
       .banner-background{animation:none}
-      .heart{animation:none}
+      .spark{animation:none}
     }
   </style>
 </head>
 <body>
   <div class="banner-container">
     <div class="banner-background"></div>
-    <div class="hearts" aria-hidden="true"></div>
+    <div class="sparks" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <div class="kicker">Valentine’s Special • ENDS TODAY</div>
-      <h1 class="main-message">Fall in Love with <span class="accent">Your Results</span></h1>
-
+      <div class="kicker">New Year Kickoff</div>
+      <h1 class="main-message">There’s Still Time to <span class="accent">Start Right</span></h1>
       <div class="card">
         <div class="highlights">
-          <div class="price">$5 to Join</div>
-          <div>🎁 Your <strong>first month is FREE</strong></div>
-          <div>Strong looks good on you.</div>
+          <div>🔥 Get started for just <strong>$49 today</strong></div>
+          <div>📆 Monthly dues begin <strong>February 28th</strong></div>
         </div>
+      </div>
+      </div>
       </div>
     </div>
   </div>
 
   <script>
-    const hearts=document.querySelector('.hearts');
-    const icons=['❤','💗','💖','💘'];
-    for(let i=0;i<50;i++){
-      const h=document.createElement('span');
-      h.className='heart';
-      h.textContent=icons[Math.floor(Math.random()*icons.length)];
-      h.style.left=Math.random()*100+'%';
-      h.style.animationDuration=(8+Math.random()*10)+'s';
-      h.style.animationDelay=(Math.random()*10)+'s';
-      hearts.appendChild(h);
+    const sparks=document.querySelector('.sparks');
+    for(let i=0;i<80;i++){
+      const s=document.createElement('span');
+      s.className='spark';
+      s.style.left=Math.random()*100+'%';
+      s.style.animationDuration=(10+Math.random()*12)+'s';
+      s.style.animationDelay=(Math.random()*10)+'s';
+      sparks.appendChild(s);
     }
   </script>
 </body>
