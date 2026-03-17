@@ -3,145 +3,142 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • March Kickoff</title>
+  <title>FitClub • St. Patrick's Day Special</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif}
 
     .banner-container{
-      position:relative;
-      width:100%;
+      position:relative;width:100%;
       min-height:100vh;min-height:100svh;min-height:100dvh;
       display:flex;justify-content:center;align-items:center;text-align:center;
       overflow:hidden;color:#ffffff;
       padding:clamp(16px,3vw,40px);
     }
 
-    /* Fresh March gradient (early spring energy) */
+    /* Lush green gradient */
     .banner-background{
       position:absolute;inset:0;z-index:0;
       background:
-        radial-gradient(900px 600px at 20% 15%, rgba(34,197,94,.35) 0%, rgba(34,197,94,0) 60%),
-        radial-gradient(900px 600px at 80% 85%, rgba(59,130,246,.30) 0%, rgba(59,130,246,0) 60%),
-        linear-gradient(135deg,#0f172a 0%, #134e4a 50%, #0f172a 100%);
+        radial-gradient(900px 600px at 20% 15%, rgba(34,197,94,.45) 0%, rgba(34,197,94,0) 60%),
+        radial-gradient(900px 600px at 80% 85%, rgba(132,204,22,.35) 0%, rgba(132,204,22,0) 60%),
+        linear-gradient(135deg,#064e3b 0%, #065f46 50%, #022c22 100%);
       background-size:120% 120%,120% 120%,100% 100%;
       animation:bgshift 28s ease-in-out infinite alternate;
     }
+    @keyframes bgshift{0%{background-position:0% 0%,100% 100%,0% 0%}100%{background-position:20% 20%,80% 80%,100% 100%}}
 
-    @keyframes bgshift{
-      0%{background-position:0% 0%,100% 100%,0% 0%}
-      100%{background-position:20% 20%,80% 80%,100% 100%}
+    /* Shamrocks */
+    .shamrocks{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .shamrock{
+      position:absolute;top:-10%;
+      font-size:clamp(16px,2.5vw,26px);
+      opacity:.2;animation:fall linear infinite;
     }
+    @keyframes fall{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(115vh) rotate(360deg)}}
 
-    /* Subtle upward motion particles */
-    .particles{position:absolute;inset:0;pointer-events:none;z-index:1}
-    .particle{
-      position:absolute;
-      bottom:-10%;
-      width:6px;height:6px;
-      border-radius:50%;
-      background:#4ade80;
-      opacity:.25;
-      animation:rise linear infinite;
+    /* Leprechaun emoji sprinkle (tasteful, low opacity) */
+    .leps{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .lep{
+      position:absolute;top:-10%;
+      font-size:clamp(16px,2.2vw,24px);
+      opacity:.12;animation:fall2 linear infinite;
     }
+    @keyframes fall2{0%{transform:translateY(0) translateX(0)}100%{transform:translateY(115vh) translateX(40px)}}
 
-    @keyframes rise{
-      0%{transform:translateY(0)}
-      100%{transform:translateY(-110vh)}
-    }
-
-    .banner-content{
-      position:relative;
-      z-index:2;
-      width:min(95vw, 1000px);
-      margin:auto;
-    }
+    .banner-content{position:relative;z-index:2;width:min(95vw,1000px);margin:auto}
 
     .kicker{
       font-size:clamp(.85rem,2vw,1rem);
-      letter-spacing:.35em;
-      text-transform:uppercase;
-      color:#bbf7d0;
-      margin-bottom:.6em;
+      letter-spacing:.35em;text-transform:uppercase;
+      color:#bbf7d0;margin-bottom:.6em;
     }
 
     .main-message{
       font-size:clamp(2.3rem,6vw,4rem);
-      line-height:1.05;
-      margin-bottom:.5em;
+      line-height:1.05;margin-bottom:.5em;
       text-shadow:0 10px 28px rgba(0,0,0,.65);
     }
 
     .accent{
-      background:linear-gradient(90deg,#86efac,#4ade80,#86efac);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
+      background:linear-gradient(90deg,#86efac,#22c55e,#86efac);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
     }
 
     .card{
-      display:inline-block;
-      padding:clamp(20px,3vw,34px);
-      border-radius:18px;
-      background:rgba(0,0,0,.45);
-      border:2px solid rgba(255,255,255,.20);
+      display:inline-block;padding:clamp(20px,3vw,34px);
+      border-radius:18px;background:rgba(0,0,0,.45);
+      border:2px solid rgba(255,255,255,.18);
       box-shadow:0 20px 60px rgba(0,0,0,.5);
       max-width:min(92vw,820px);
     }
 
-    .highlights{
-      font-size:clamp(1.1rem,2.4vw,1.6rem);
-      line-height:1.6;
-    }
-
-    .highlights div{
-      margin:.6em 0;
-      text-shadow:0 2px 12px rgba(0,0,0,.7);
-    }
+    .highlights{font-size:clamp(1.1rem,2.4vw,1.6rem);line-height:1.6}
+    .highlights div{margin:.6em 0;text-shadow:0 2px 12px rgba(0,0,0,.7)}
 
     .price{
-      font-size:clamp(2.6rem,5vw,3.6rem);
-      font-weight:900;
-      margin:.2em 0;
-      color:#4ade80;
+      font-size:clamp(2.6rem,5vw,3.8rem);
+      font-weight:900;margin:.2em 0;color:#22c55e;
       text-shadow:0 8px 18px rgba(0,0,0,.6);
+    }
+
+    .badge{
+      display:inline-block;margin-top:10px;padding:6px 14px;border-radius:999px;
+      background:#16a34a;border:1px solid rgba(255,255,255,.3);
+      font-size:clamp(.85rem,2vw,1rem);letter-spacing:.12em;text-transform:uppercase;
+      box-shadow:0 8px 18px rgba(0,0,0,.4);
     }
 
     @media (prefers-reduced-motion: reduce){
       .banner-background{animation:none}
-      .particle{animation:none}
+      .shamrock,.lep{animation:none}
     }
   </style>
 </head>
 <body>
   <div class="banner-container">
     <div class="banner-background"></div>
-    <div class="particles" aria-hidden="true"></div>
+    <div class="shamrocks" aria-hidden="true"></div>
+    <div class="leps" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <div class="kicker">March Kickoff • Starts Today</div>
-      <h1 class="main-message">Spring Into <span class="accent">Stronger</span></h1>
+      <div class="kicker">St. Patrick’s Day • One Day Only</div>
+      <h1 class="main-message">Get Lucky. <span class="accent">Save Some Green</span></h1>
 
       <div class="card">
         <div class="highlights">
-          <div class="price">$49 Down</div>
-          <div>No dues until <strong>March 31st</strong></div>
-          <div>Start now. Build momentum before summer.</div>
+          <div class="price">$17 to Join</div>
+          <div>🎁 Your <strong>first month is FREE</strong></div>
+          <div>🍀 Strong habits beat lucky breaks.</div>
         </div>
+        <div class="badge">Ends Today</div>
       </div>
     </div>
   </div>
 
   <script>
-    const particles=document.querySelector('.particles');
+    const shamrocks=document.querySelector('.shamrocks');
+    const icons=['☘','🍀'];
     for(let i=0;i<70;i++){
-      const p=document.createElement('span');
-      p.className='particle';
-      p.style.left=Math.random()*100+'%';
-      p.style.animationDuration=(10+Math.random()*10)+'s';
-      p.style.animationDelay=(Math.random()*10)+'s';
-      particles.appendChild(p);
+      const s=document.createElement('span');
+      s.className='shamrock';
+      s.textContent=icons[Math.floor(Math.random()*icons.length)];
+      s.style.left=Math.random()*100+'%';
+      s.style.animationDuration=(8+Math.random()*10)+'s';
+      s.style.animationDelay=(Math.random()*10)+'s';
+      shamrocks.appendChild(s);
+    }
+
+    const leps=document.querySelector('.leps');
+    for(let i=0;i<20;i++){
+      const l=document.createElement('span');
+      l.className='lep';
+      l.textContent='🧑‍🌾'; /* subtle stand-in for leprechaun style without going cartoon-heavy */
+      l.style.left=Math.random()*100+'%';
+      l.style.animationDuration=(10+Math.random()*12)+'s';
+      l.style.animationDelay=(Math.random()*10)+'s';
+      leps.appendChild(l);
     }
   </script>
 </body>
