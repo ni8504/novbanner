@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • St. Patrick's Day Special</title>
+  <title>FitClub • Spring Special</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -12,7 +12,7 @@
     .banner-container{
       position:relative;
       width:100%;
-      height:350px; /* fixed banner height */
+      height:350px;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -22,35 +22,27 @@
       padding:clamp(8px,2vw,16px);
     }
 
-    /* Lush green gradient */
+    /* Bright spring gradient */
     .banner-background{
       position:absolute;inset:0;z-index:0;
       background:
-        radial-gradient(900px 600px at 20% 15%, rgba(34,197,94,.45) 0%, rgba(34,197,94,0) 60%),
-        radial-gradient(900px 600px at 80% 85%, rgba(132,204,22,.35) 0%, rgba(132,204,22,0) 60%),
-        linear-gradient(135deg,#064e3b 0%, #065f46 50%, #022c22 100%);
+        radial-gradient(900px 600px at 18% 15%, rgba(134,239,172,.45) 0%, rgba(134,239,172,0) 60%),
+        radial-gradient(900px 600px at 82% 85%, rgba(56,189,248,.30) 0%, rgba(56,189,248,0) 60%),
+        linear-gradient(135deg,#14532d 0%, #0f766e 50%, #14532d 100%);
       background-size:120% 120%,120% 120%,100% 100%;
       animation:bgshift 28s ease-in-out infinite alternate;
     }
     @keyframes bgshift{0%{background-position:0% 0%,100% 100%,0% 0%}100%{background-position:20% 20%,80% 80%,100% 100%}}
 
-    /* Shamrocks */
-    .shamrocks{position:absolute;inset:0;pointer-events:none;z-index:1}
-    .shamrock{
+    /* Floating blossoms / leaves */
+    .springbits{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .springbit{
       position:absolute;top:-10%;
-      font-size:clamp(16px,2.5vw,26px);
-      opacity:.2;animation:fall linear infinite;
+      font-size:clamp(14px,2.2vw,24px);
+      opacity:.18;
+      animation:fall linear infinite;
     }
     @keyframes fall{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(115vh) rotate(360deg)}}
-
-    /* Leprechaun emoji sprinkle (tasteful, low opacity) */
-    .leps{position:absolute;inset:0;pointer-events:none;z-index:1}
-    .lep{
-      position:absolute;top:-10%;
-      font-size:clamp(16px,2.2vw,24px);
-      opacity:.12;animation:fall2 linear infinite;
-    }
-    @keyframes fall2{0%{transform:translateY(0) translateX(0)}100%{transform:translateY(115vh) translateX(40px)}}
 
     .banner-content{position:relative;z-index:2;width:min(95vw,1000px);margin:auto}
 
@@ -58,7 +50,7 @@
       font-size:clamp(.65rem,1.8vw,.8rem);
       letter-spacing:.25em;
       text-transform:uppercase;
-      color:#bbf7d0;
+      color:#dcfce7;
       margin-bottom:.4em;
     }
 
@@ -70,7 +62,7 @@
     }
 
     .accent{
-      background:linear-gradient(90deg,#86efac,#22c55e,#86efac);
+      background:linear-gradient(90deg,#bbf7d0,#86efac,#bbf7d0);
       -webkit-background-clip:text;background-clip:text;color:transparent;
     }
 
@@ -94,66 +86,46 @@
       font-size:clamp(1.8rem,4vw,2.6rem);
       font-weight:900;
       margin:.1em 0;
-      color:#22c55e;
+      color:#86efac;
       text-shadow:0 6px 14px rgba(0,0,0,.6);
-    }
-
-    .badge{
-      display:inline-block;margin-top:10px;padding:6px 14px;border-radius:999px;
-      background:#16a34a;border:1px solid rgba(255,255,255,.3);
-      font-size:clamp(.85rem,2vw,1rem);letter-spacing:.12em;text-transform:uppercase;
-      box-shadow:0 8px 18px rgba(0,0,0,.4);
     }
 
     @media (prefers-reduced-motion: reduce){
       .banner-background{animation:none}
-      .shamrock,.lep{animation:none}
+      .springbit{animation:none}
     }
   </style>
 </head>
 <body>
   <div class="banner-container">
     <div class="banner-background"></div>
-    <div class="shamrocks" aria-hidden="true"></div>
-    <div class="leps" aria-hidden="true"></div>
+    <div class="springbits" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <div class="kicker">St. Patrick’s Day • Extended One More Day</div>
-      <h1 class="main-message">Get Lucky. <span class="accent">Save Some Green</span></h1>
+      <div class="kicker">Spring Special</div>
+      <h1 class="main-message">Step Into <span class="accent">Spring Stronger</span></h1>
 
       <div class="card">
         <div class="highlights">
-          <div class="price">$17 to Join</div>
-          <div>🎁 Your <strong>first month is FREE</strong></div>
-          <div>🍀 One more day to save some green.</div>
+          <div class="price">$49 to Start</div>
+          <div>No dues until <strong>March 31st</strong></div>
+          <div>Fresh season. Fresh start.</div>
         </div>
-        <div class="badge">Ends March 18th</div>
       </div>
     </div>
   </div>
 
   <script>
-    const shamrocks=document.querySelector('.shamrocks');
-    const icons=['☘','🍀'];
-    for(let i=0;i<70;i++){
+    const springbits=document.querySelector('.springbits');
+    const icons=['🌸','🍃','🌼'];
+    for(let i=0;i<60;i++){
       const s=document.createElement('span');
-      s.className='shamrock';
+      s.className='springbit';
       s.textContent=icons[Math.floor(Math.random()*icons.length)];
       s.style.left=Math.random()*100+'%';
       s.style.animationDuration=(8+Math.random()*10)+'s';
       s.style.animationDelay=(Math.random()*10)+'s';
-      shamrocks.appendChild(s);
-    }
-
-    const leps=document.querySelector('.leps');
-    for(let i=0;i<20;i++){
-      const l=document.createElement('span');
-      l.className='lep';
-      l.textContent='🧑‍🌾'; /* subtle stand-in for leprechaun style without going cartoon-heavy */
-      l.style.left=Math.random()*100+'%';
-      l.style.animationDuration=(10+Math.random()*12)+'s';
-      l.style.animationDelay=(Math.random()*10)+'s';
-      leps.appendChild(l);
+      springbits.appendChild(s);
     }
   </script>
 </body>
