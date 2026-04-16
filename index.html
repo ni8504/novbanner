@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • Tax Day Special</title>
+  <title>FitClub • April Special</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -22,23 +22,23 @@
       padding:clamp(8px,2vw,16px);
     }
 
-    /* Clean "financial" gradient (green + navy) */
+    /* Bright spring gradient */
     .banner-background{
       position:absolute;inset:0;z-index:0;
       background:
-        radial-gradient(900px 600px at 20% 20%, rgba(34,197,94,.35) 0%, rgba(34,197,94,0) 60%),
-        radial-gradient(900px 600px at 80% 80%, rgba(59,130,246,.25) 0%, rgba(59,130,246,0) 60%),
-        linear-gradient(135deg,#052e16 0%, #0f172a 50%, #052e16 100%);
+        radial-gradient(900px 600px at 18% 15%, rgba(134,239,172,.45) 0%, rgba(134,239,172,0) 60%),
+        radial-gradient(900px 600px at 82% 85%, rgba(56,189,248,.30) 0%, rgba(56,189,248,0) 60%),
+        linear-gradient(135deg,#14532d 0%, #0f766e 50%, #14532d 100%);
       background-size:120% 120%,120% 120%,100% 100%;
-      animation:bgshift 26s ease-in-out infinite alternate;
+      animation:bgshift 28s ease-in-out infinite alternate;
     }
     @keyframes bgshift{0%{background-position:0% 0%,100% 100%,0% 0%}100%{background-position:20% 20%,80% 80%,100% 100%}}
 
-    /* Floating $ + subtle forms */
-    .bits{position:absolute;inset:0;pointer-events:none;z-index:1}
-    .bit{
+    /* Floating blossoms / leaves */
+    .springbits{position:absolute;inset:0;pointer-events:none;z-index:1}
+    .springbit{
       position:absolute;top:-10%;
-      font-size:clamp(14px,2.2vw,22px);
+      font-size:clamp(14px,2.2vw,24px);
       opacity:.18;
       animation:fall linear infinite;
     }
@@ -48,9 +48,9 @@
 
     .kicker{
       font-size:clamp(.65rem,1.8vw,.8rem);
-      letter-spacing:.28em;
+      letter-spacing:.25em;
       text-transform:uppercase;
-      color:#bbf7d0;
+      color:#dcfce7;
       margin-bottom:.4em;
     }
 
@@ -62,7 +62,7 @@
     }
 
     .accent{
-      background:linear-gradient(90deg,#86efac,#22c55e,#86efac);
+      background:linear-gradient(90deg,#bbf7d0,#86efac,#bbf7d0);
       -webkit-background-clip:text;background-clip:text;color:transparent;
     }
 
@@ -80,60 +80,52 @@
       font-size:clamp(.9rem,2.5vw,1.2rem);
       line-height:1.4;
     }
-    .highlights div{margin:.5em 0;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+    .highlights div{margin:.6em 0;text-shadow:0 2px 12px rgba(0,0,0,.7)}
 
     .price{
-      font-size:clamp(1.9rem,4vw,2.8rem);
+      font-size:clamp(1.8rem,4vw,2.6rem);
       font-weight:900;
       margin:.1em 0;
-      color:#22c55e;
+      color:#86efac;
       text-shadow:0 6px 14px rgba(0,0,0,.6);
-    }
-
-    .badge{
-      display:inline-block;margin-top:8px;padding:5px 12px;border-radius:999px;
-      background:#16a34a;border:1px solid rgba(255,255,255,.25);
-      font-size:clamp(.7rem,1.8vw,.9rem);letter-spacing:.12em;text-transform:uppercase;
-      box-shadow:0 6px 14px rgba(0,0,0,.4);
     }
 
     @media (prefers-reduced-motion: reduce){
       .banner-background{animation:none}
-      .bit{animation:none}
+      .springbit{animation:none}
     }
   </style>
 </head>
 <body>
   <div class="banner-container">
     <div class="banner-background"></div>
-    <div class="bits" aria-hidden="true"></div>
+    <div class="springbits" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <div class="kicker">Tax Day • One Day Only</div>
-      <h1 class="main-message">File Your Gains. <span class="accent">Keep More Green</span></h1>
+      <div class="kicker">Spring Special</div>
+      <h1 class="main-message">Build Momentum This <span class="accent">Spring</span></h1>
 
       <div class="card">
         <div class="highlights">
-          <div class="price">$10.40 to Join</div>
-          <div>🎁 Your <strong>first month is FREE</strong></div>
-          <div>Simple as 1040EZ.</div>
+          <div class="price">$49 to Start</div>
+          <div>No dues until <strong>April 30th</strong></div>
+          <div>Keep going. You're closer than you think.</div>
         </div>
-        <div class="badge">April 15 Only</div>
       </div>
     </div>
   </div>
 
   <script>
-    const bits=document.querySelector('.bits');
-    const icons=['$','💵','🧾'];
+    const springbits=document.querySelector('.springbits');
+    const icons=['🌸','🍃','🌼'];
     for(let i=0;i<60;i++){
-      const b=document.createElement('span');
-      b.className='bit';
-      b.textContent=icons[Math.floor(Math.random()*icons.length)];
-      b.style.left=Math.random()*100+'%';
-      b.style.animationDuration=(8+Math.random()*10)+'s';
-      b.style.animationDelay=(Math.random()*10)+'s';
-      bits.appendChild(b);
+      const s=document.createElement('span');
+      s.className='springbit';
+      s.textContent=icons[Math.floor(Math.random()*icons.length)];
+      s.style.left=Math.random()*100+'%';
+      s.style.animationDuration=(8+Math.random()*10)+'s';
+      s.style.animationDelay=(Math.random()*10)+'s';
+      springbits.appendChild(s);
     }
   </script>
 </body>
