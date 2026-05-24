@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • May Summer Prep</title>
+  <title>FitClub • Memorial Day Sale</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -22,17 +22,18 @@
       padding:clamp(8px,2vw,16px);
     }
 
-    /* Bright early-summer gradient (sun + sky + green) */
+    /* Memorial Day sunset gradient */
     .banner-background{
       position:absolute;inset:0;z-index:0;
       background:
-        radial-gradient(800px 500px at 80% 10%, rgba(253,224,71,.45) 0%, rgba(253,224,71,0) 60%), /* sun glow */
-        radial-gradient(900px 600px at 15% 85%, rgba(34,197,94,.35) 0%, rgba(34,197,94,0) 60%), /* grass */
-        linear-gradient(135deg,#0ea5e9 0%, #0f766e 50%, #065f46 100%); /* sky to green */
-      background-size:120% 120%,120% 120%,100% 100%;
-      animation:bgshift 24s ease-in-out infinite alternate;
+        radial-gradient(700px 400px at 20% 15%, rgba(239,68,68,.38) 0%, rgba(239,68,68,0) 60%),
+        radial-gradient(700px 400px at 80% 20%, rgba(59,130,246,.32) 0%, rgba(59,130,246,0) 60%),
+        radial-gradient(800px 500px at 50% 100%, rgba(250,204,21,.18) 0%, rgba(250,204,21,0) 60%),
+        linear-gradient(135deg,#0f172a 0%, #1e3a8a 45%, #111827 100%);
+      background-size:120% 120%,120% 120%,120% 120%,100% 100%;
+      animation:bgshift 22s ease-in-out infinite alternate;
     }
-    @keyframes bgshift{0%{background-position:0% 0%,100% 100%,0% 0%}100%{background-position:20% 20%,80% 80%,100% 100%}}
+    @keyframes bgshift{0%{background-position:0% 0%,100% 100%,50% 100%,0% 0%}100%{background-position:20% 20%,80% 80%,45% 90%,100% 100%}}
 
     /* Subtle summer motion (sun/sparkle) */
     .bits{position:absolute;inset:0;pointer-events:none;z-index:1}
@@ -50,7 +51,7 @@
       font-size:clamp(.65rem,1.8vw,.8rem);
       letter-spacing:.28em;
       text-transform:uppercase;
-      color:#d9f99d;
+      color:#fde68a;
       margin-bottom:.4em;
     }
 
@@ -92,7 +93,7 @@
 
     .badge{
       display:inline-block;margin-top:8px;padding:5px 12px;border-radius:999px;
-      background:#22c55e;border:1px solid rgba(255,255,255,.25);
+      background:#dc2626;border:1px solid rgba(255,255,255,.25);
       font-size:clamp(.7rem,1.8vw,.9rem);letter-spacing:.12em;text-transform:uppercase;
       box-shadow:0 6px 14px rgba(0,0,0,.4);
     }
@@ -109,23 +110,23 @@
     <div class="bits" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <div class="kicker">May Special • Summer Starts Now</div>
-      <h1 class="main-message">Get Ready for <span class="accent">Summer</span></h1>
+      <div class="kicker">Memorial Day Sale • One Day Only</div>
+      <h1 class="main-message">Kick Off Summer <span class="accent">Stronger</span></h1>
 
       <div class="card">
         <div class="highlights">
-          <div class="price">$29 to Start</div>
-          <div>No dues until <strong>May 31st</strong></div>
-          <div>Start now. Show up when it counts.</div>
+          <div class="price">Only $5 to Join</div>
+          <div>Your <strong>first month is FREE</strong></div>
+          <div id="countdown">Sale ends in --:--:--</div>
         </div>
-        <div class="badge">Limited Time</div>
+        <div class="badge">Early Access • May 24 • 6PM CT</div>
       </div>
     </div>
   </div>
 
   <script>
     const bits=document.querySelector('.bits');
-    const icons=['☀️','🌤️','✨'];
+    const icons=['⭐','✨','🇺🇸'];
     for(let i=0;i<50;i++){
       const b=document.createElement('span');
       b.className='bit';
@@ -135,6 +136,30 @@
       b.style.animationDelay=(Math.random()*10)+'s';
       bits.appendChild(b);
     }
+  
+
+    // Countdown timer (Central Time)
+    const countdown=document.getElementById('countdown');
+    const endDate=new Date('2026-05-26T00:00:00-05:00'); // Midnight Central after Memorial Day
+
+    function updateCountdown(){
+      const now=new Date();
+      const diff=endDate-now;
+
+      if(diff<=0){
+        countdown.textContent='Offer Ends Tonight';
+        return;
+      }
+
+      const hours=Math.floor(diff/(1000*60*60));
+      const minutes=Math.floor((diff%(1000*60*60))/(1000*60));
+      const seconds=Math.floor((diff%(1000*60))/1000);
+
+      countdown.textContent=`Sale ends in ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown,1000);
   </script>
 </body>
 </html>
