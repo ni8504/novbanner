@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • Memorial Day Sale</title>
+  <title>FitClub • June Summer Special</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif}
@@ -22,36 +23,56 @@
       padding:clamp(8px,2vw,16px);
     }
 
-    /* Memorial Day sunset gradient */
+    /* June summer gradient */
     .banner-background{
-      position:absolute;inset:0;z-index:0;
+      position:absolute;
+      inset:0;
+      z-index:0;
       background:
-        radial-gradient(700px 400px at 20% 15%, rgba(239,68,68,.38) 0%, rgba(239,68,68,0) 60%),
-        radial-gradient(700px 400px at 80% 20%, rgba(59,130,246,.32) 0%, rgba(59,130,246,0) 60%),
-        radial-gradient(800px 500px at 50% 100%, rgba(250,204,21,.18) 0%, rgba(250,204,21,0) 60%),
-        linear-gradient(135deg,#0f172a 0%, #1e3a8a 45%, #111827 100%);
-      background-size:120% 120%,120% 120%,120% 120%,100% 100%;
-      animation:bgshift 22s ease-in-out infinite alternate;
+        radial-gradient(800px 500px at 80% 12%, rgba(253,224,71,.42) 0%, rgba(253,224,71,0) 60%),
+        radial-gradient(900px 600px at 15% 85%, rgba(20,184,166,.35) 0%, rgba(20,184,166,0) 60%),
+        linear-gradient(135deg,#0ea5e9 0%, #0284c7 45%, #0f766e 100%);
+      background-size:120% 120%,120% 120%,100% 100%;
+      animation:bgshift 24s ease-in-out infinite alternate;
     }
-    @keyframes bgshift{0%{background-position:0% 0%,100% 100%,50% 100%,0% 0%}100%{background-position:20% 20%,80% 80%,45% 90%,100% 100%}}
 
-    /* Subtle summer motion (sun/sparkle) */
-    .bits{position:absolute;inset:0;pointer-events:none;z-index:1}
+    @keyframes bgshift{
+      0%{background-position:0% 0%,100% 100%,0% 0%}
+      100%{background-position:20% 20%,80% 80%,100% 100%}
+    }
+
+    .bits{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:1;
+    }
+
     .bit{
-      position:absolute;top:-10%;
+      position:absolute;
+      top:-10%;
       font-size:clamp(14px,2.2vw,22px);
       opacity:.18;
       animation:fall linear infinite;
     }
-    @keyframes fall{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(115vh) rotate(360deg)}}
 
-    .banner-content{position:relative;z-index:2;width:min(95vw,1000px);margin:auto}
+    @keyframes fall{
+      0%{transform:translateY(0) rotate(0deg)}
+      100%{transform:translateY(115vh) rotate(360deg)}
+    }
+
+    .banner-content{
+      position:relative;
+      z-index:2;
+      width:min(95vw,1000px);
+      margin:auto;
+    }
 
     .kicker{
       font-size:clamp(.65rem,1.8vw,.8rem);
       letter-spacing:.28em;
       text-transform:uppercase;
-      color:#fde68a;
+      color:#e0f2fe;
       margin-bottom:.4em;
     }
 
@@ -63,8 +84,10 @@
     }
 
     .accent{
-      background:linear-gradient(90deg,#fde68a,#facc15,#fde68a);
-      -webkit-background-clip:text;background-clip:text;color:transparent;
+      background:linear-gradient(90deg,#fdba74,#fb923c,#fdba74);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
 
     .card{
@@ -81,20 +104,30 @@
       font-size:clamp(.9rem,2.5vw,1.2rem);
       line-height:1.4;
     }
-    .highlights div{margin:.5em 0;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+
+    .highlights div{
+      margin:.5em 0;
+      text-shadow:0 2px 12px rgba(0,0,0,.7);
+    }
 
     .price{
-      font-size:clamp(1.9rem,4vw,2.8rem);
+      font-size:clamp(1.7rem,4vw,2.6rem);
       font-weight:900;
       margin:.1em 0;
-      color:#fde68a;
+      color:#fdba74;
       text-shadow:0 6px 14px rgba(0,0,0,.6);
     }
 
     .badge{
-      display:inline-block;margin-top:8px;padding:5px 12px;border-radius:999px;
-      background:#dc2626;border:1px solid rgba(255,255,255,.25);
-      font-size:clamp(.7rem,1.8vw,.9rem);letter-spacing:.12em;text-transform:uppercase;
+      display:inline-block;
+      margin-top:8px;
+      padding:5px 12px;
+      border-radius:999px;
+      background:#fb923c;
+      border:1px solid rgba(255,255,255,.25);
+      font-size:clamp(.7rem,1.8vw,.9rem);
+      letter-spacing:.12em;
+      text-transform:uppercase;
       box-shadow:0 6px 14px rgba(0,0,0,.4);
     }
 
@@ -104,62 +137,40 @@
     }
   </style>
 </head>
+
 <body>
   <div class="banner-container">
     <div class="banner-background"></div>
     <div class="bits" aria-hidden="true"></div>
 
     <div class="banner-content">
-      <div class="kicker">Memorial Day Sale • One Day Only</div>
-      <h1 class="main-message">Kick Off Summer <span class="accent">Stronger</span></h1>
+      <div class="kicker">June Summer Special</div>
+      <h1 class="main-message">Summer Starts <span class="accent">Here</span></h1>
 
       <div class="card">
         <div class="highlights">
-          <div class="price">Only $5 to Join</div>
-          <div>Your <strong>first month is FREE</strong></div>
-          <div id="countdown">Sale ends in --:--:--</div>
+          <div class="price">$10/Month for 3 Months</div>
+          <div>Join This June</div>
+          <div>☀️ More Energy. More Confidence. More Summer.</div>
         </div>
-        
+        <div class="badge">Limited Time</div>
       </div>
     </div>
   </div>
 
   <script>
-    const bits=document.querySelector('.bits');
-    const icons=['⭐','✨','🇺🇸'];
-    for(let i=0;i<50;i++){
-      const b=document.createElement('span');
-      b.className='bit';
-      b.textContent=icons[Math.floor(Math.random()*icons.length)];
-      b.style.left=Math.random()*100+'%';
-      b.style.animationDuration=(8+Math.random()*10)+'s';
-      b.style.animationDelay=(Math.random()*10)+'s';
+    const bits = document.querySelector('.bits');
+    const icons = ['☀️','🌴','🏖️','✨'];
+
+    for(let i = 0; i < 50; i++){
+      const b = document.createElement('span');
+      b.className = 'bit';
+      b.textContent = icons[Math.floor(Math.random() * icons.length)];
+      b.style.left = Math.random() * 100 + '%';
+      b.style.animationDuration = (8 + Math.random() * 10) + 's';
+      b.style.animationDelay = (Math.random() * 10) + 's';
       bits.appendChild(b);
     }
-  
-
-    // Countdown timer (Central Time)
-    const countdown=document.getElementById('countdown');
-    const endDate=new Date('2026-05-26T00:00:00-05:00'); // Midnight Central after Memorial Day
-
-    function updateCountdown(){
-      const now=new Date();
-      const diff=endDate-now;
-
-      if(diff<=0){
-        countdown.textContent='Offer Ends Tonight';
-        return;
-      }
-
-      const hours=Math.floor(diff/(1000*60*60));
-      const minutes=Math.floor((diff%(1000*60*60))/(1000*60));
-      const seconds=Math.floor((diff%(1000*60))/1000);
-
-      countdown.textContent=`Sale ends in ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown,1000);
   </script>
 </body>
 </html>
