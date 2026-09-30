@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • September</title>
+  <title>FitClub • Fall</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
 
   <style>
     * {
@@ -33,7 +33,7 @@
       padding: clamp(10px, 2vw, 18px);
     }
 
-    /* Late-summer / early-fall background */
+    /* Rich fall background */
     .bg {
       position: absolute;
       inset: 0;
@@ -42,24 +42,25 @@
       background:
         radial-gradient(
           circle at 15% 15%,
-          rgba(251, 191, 36, .28),
+          rgba(251, 191, 36, .30),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(234, 88, 12, .30),
           transparent 32%
         ),
         radial-gradient(
-          circle at 85% 80%,
-          rgba(249, 115, 22, .22),
-          transparent 34%
-        ),
-        radial-gradient(
-          circle at 50% 100%,
-          rgba(34, 197, 94, .16),
-          transparent 38%
+          circle at 75% 90%,
+          rgba(180, 83, 9, .30),
+          transparent 35%
         ),
         linear-gradient(
           135deg,
-          #164e63 0%,
-          #115e59 48%,
-          #365314 100%
+          #3f3a22 0%,
+          #365314 35%,
+          #713f12 70%,
+          #431407 100%
         );
 
       background-size:
@@ -75,22 +76,36 @@
       from {
         background-position:
           0 0,
+          100% 0,
           100% 100%,
-          50% 100%,
           0 0;
       }
 
       to {
         background-position:
           15% 15%,
+          85% 15%,
           85% 85%,
-          55% 90%,
           100% 100%;
       }
     }
 
-    /* Floating seasonal elements */
-    .season {
+    /* Soft warm glow */
+    .glow {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: rgba(251, 191, 36, .10);
+      filter: blur(70px);
+      z-index: 1;
+    }
+
+    /* Falling leaves */
+    .leaves {
       position: absolute;
       inset: 0;
       z-index: 1;
@@ -98,41 +113,46 @@
       overflow: hidden;
     }
 
-    .season-item {
+    .leaf {
       position: absolute;
-      top: -12%;
-      opacity: .16;
-      font-size: clamp(14px, 2.2vw, 22px);
-      animation: drift linear infinite;
+      top: -15%;
+      opacity: .20;
+      font-size: clamp(16px, 2.3vw, 25px);
+      animation: fall linear infinite;
     }
 
-    @keyframes drift {
-      from {
-        transform: translateY(0) rotate(0deg);
+    @keyframes fall {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
       }
 
-      to {
-        transform: translateY(115vh) rotate(360deg);
+      50% {
+        transform: translateY(55vh) translateX(25px) rotate(180deg);
+      }
+
+      100% {
+        transform: translateY(115vh) translateX(-15px) rotate(360deg);
       }
     }
 
     .content {
       position: relative;
-      z-index: 2;
-      width: min(95%, 900px);
+      z-index: 3;
+      width: min(95%, 950px);
     }
 
     .kicker {
       display: inline-block;
       margin-bottom: 10px;
-      padding: 6px 14px;
+      padding: 6px 15px;
       border-radius: 999px;
 
-      background: rgba(0, 0, 0, .30);
-      border: 1px solid rgba(255, 255, 255, .22);
+      background: rgba(0, 0, 0, .28);
+      border: 1px solid rgba(255, 255, 255, .20);
 
       font-size: clamp(.65rem, 1.8vw, .8rem);
-      letter-spacing: .22em;
+      font-weight: 800;
+      letter-spacing: .24em;
       text-transform: uppercase;
       color: #fef3c7;
 
@@ -140,11 +160,11 @@
     }
 
     h1 {
-      font-size: clamp(1.9rem, 5vw, 3rem);
-      line-height: 1.05;
-      margin-bottom: 14px;
-
-      text-shadow: 0 6px 20px rgba(0, 0, 0, .55);
+      font-size: clamp(2rem, 5.5vw, 3.25rem);
+      font-weight: 900;
+      line-height: 1.02;
+      margin-bottom: 15px;
+      text-shadow: 0 6px 22px rgba(0, 0, 0, .60);
     }
 
     .accent {
@@ -152,7 +172,7 @@
         90deg,
         #fde68a,
         #fbbf24,
-        #fde68a
+        #fb923c
       );
 
       -webkit-background-clip: text;
@@ -163,29 +183,39 @@
     .card {
       display: inline-block;
       max-width: 95%;
-
-      padding: 14px 28px;
+      padding: 15px 28px;
       border-radius: 16px;
 
       background: rgba(0, 0, 0, .38);
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
 
-      border: 1px solid rgba(255, 255, 255, .18);
+      border: 1px solid rgba(255, 255, 255, .17);
 
       box-shadow:
-        0 12px 30px rgba(0, 0, 0, .32);
+        0 12px 32px rgba(0, 0, 0, .35);
     }
 
     .main-line {
-      font-size: clamp(1.05rem, 2.7vw, 1.35rem);
+      font-size: clamp(1rem, 2.6vw, 1.3rem);
       line-height: 1.35;
       margin-bottom: 6px;
     }
 
     .sub-line {
-      font-size: clamp(.8rem, 2vw, 1rem);
+      font-size: clamp(.78rem, 2vw, .95rem);
       line-height: 1.4;
-      color: #ecfccb;
+      color: #fef3c7;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 13px 18px;
+      }
+
+      .kicker {
+        letter-spacing: .16em;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -193,7 +223,7 @@
         animation: none;
       }
 
-      .season-item {
+      .leaf {
         animation: none;
       }
     }
@@ -205,35 +235,34 @@
   <div class="banner">
 
     <div class="bg"></div>
+    <div class="glow"></div>
 
     <div
-      class="season"
-      id="season"
+      class="leaves"
+      id="leaves"
       aria-hidden="true">
     </div>
 
     <div class="content">
 
       <div class="kicker">
-        September at FitClub
+        A Stronger Season Starts Now
       </div>
 
       <h1>
-        Get Back to Your Routine.
-        <span class="accent">
-          Come Back Stronger.
-        </span>
+        Fall Into a
+        <span class="accent">Stronger Routine.</span>
       </h1>
 
       <div class="card">
 
         <div class="main-line">
-          New season. New schedule.
-          <strong>Make time for you.</strong>
+          The seasons change.
+          <strong>Your goals don't have to.</strong>
         </div>
 
         <div class="sub-line">
-          🍂 Your goals didn't disappear when summer ended.
+          🍂 Keep moving. Keep building. Keep getting stronger.
         </div>
 
       </div>
@@ -243,39 +272,36 @@
   </div>
 
   <script>
-    const container =
-      document.getElementById('season');
+    const container = document.getElementById('leaves');
 
     const icons = [
       '🍂',
-      '🍃',
-      '✨'
+      '🍁',
+      '🍃'
     ];
 
-    for (let i = 0; i < 45; i++) {
+    for (let i = 0; i < 42; i++) {
 
-      const el =
-        document.createElement('span');
+      const leaf = document.createElement('span');
 
-      el.className = 'season-item';
+      leaf.className = 'leaf';
 
-      el.textContent =
-        icons[
-          Math.floor(
-            Math.random() * icons.length
-          )
-        ];
+      leaf.textContent =
+        icons[Math.floor(Math.random() * icons.length)];
 
-      el.style.left =
+      leaf.style.left =
         Math.random() * 100 + '%';
 
-      el.style.animationDuration =
-        (9 + Math.random() * 10) + 's';
+      leaf.style.animationDuration =
+        (9 + Math.random() * 11) + 's';
 
-      el.style.animationDelay =
+      leaf.style.animationDelay =
         (Math.random() * 10) + 's';
 
-      container.appendChild(el);
+      leaf.style.fontSize =
+        (14 + Math.random() * 13) + 'px';
+
+      container.appendChild(leaf);
     }
   </script>
 
