@@ -1,309 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FitClub • Fall</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+<title>FitClub Halloween Special</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      font-family: 'Montserrat', sans-serif;
-    }
+<style>
 
-    .banner {
-      position: relative;
-      width: 100%;
-      height: 350px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      padding: clamp(10px, 2vw, 18px);
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    /* Rich fall background */
-    .bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
+html, body {
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
 
-      background:
+/* MAIN BANNER */
+
+.halloween-banner {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    isolation: isolate;
+
+    background:
         radial-gradient(
-          circle at 15% 15%,
-          rgba(251, 191, 36, .30),
-          transparent 30%
+            ellipse at 80% 20%,
+            rgba(249,115,22,.24),
+            transparent 40%
         ),
         radial-gradient(
-          circle at 85% 20%,
-          rgba(234, 88, 12, .30),
-          transparent 32%
-        ),
-        radial-gradient(
-          circle at 75% 90%,
-          rgba(180, 83, 9, .30),
-          transparent 35%
+            ellipse at 15% 90%,
+            rgba(126,34,206,.35),
+            transparent 50%
         ),
         linear-gradient(
-          135deg,
-          #3f3a22 0%,
-          #365314 35%,
-          #713f12 70%,
-          #431407 100%
+            135deg,
+            #10091c 0%,
+            #1e1035 45%,
+            #080611 100%
+        );
+}
+
+/* GLOWING HALLOWEEN MOON */
+
+.moon {
+    position: absolute;
+    width: 185px;
+    height: 185px;
+    right: 8%;
+    top: -65px;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+            #ffdf9e,
+            #ff9f43 55%,
+            #ea580c 100%
         );
 
-      background-size:
-        120% 120%,
-        120% 120%,
-        120% 120%,
-        100% 100%;
+    box-shadow:
+        0 0 45px rgba(249,115,22,.45),
+        0 0 100px rgba(249,115,22,.22),
+        0 0 170px rgba(249,115,22,.12);
 
-      animation: bgshift 24s ease-in-out infinite alternate;
+    opacity: .85;
+    z-index: 0;
+
+    animation: moonPulse 6s ease-in-out infinite;
+}
+
+@keyframes moonPulse {
+    0%, 100% {
+        box-shadow:
+            0 0 45px rgba(249,115,22,.45),
+            0 0 100px rgba(249,115,22,.22);
     }
 
-    @keyframes bgshift {
-      from {
-        background-position:
-          0 0,
-          100% 0,
-          100% 100%,
-          0 0;
-      }
+    50% {
+        box-shadow:
+            0 0 65px rgba(249,115,22,.60),
+            0 0 130px rgba(249,115,22,.30);
+    }
+}
 
-      to {
-        background-position:
-          15% 15%,
-          85% 15%,
-          85% 85%,
-          100% 100%;
-      }
+/* FOG */
+
+.fog {
+    position: absolute;
+    width: 200%;
+    height: 170px;
+    left: -50%;
+    bottom: -75px;
+    pointer-events: none;
+    z-index: 1;
+
+    background:
+        radial-gradient(
+            ellipse at 25% 50%,
+            rgba(139,92,246,.25),
+            transparent 55%
+        ),
+        radial-gradient(
+            ellipse at 75% 40%,
+            rgba(255,255,255,.12),
+            transparent 55%
+        );
+
+    filter: blur(25px);
+    animation: fogMove 16s ease-in-out infinite alternate;
+}
+
+@keyframes fogMove {
+    from { transform: translateX(-5%); }
+    to { transform: translateX(15%); }
+}
+
+/* ANIMATED BATS */
+
+.bat {
+    position: absolute;
+    z-index: 1;
+    fill: #05030a;
+    opacity: .7;
+    pointer-events: none;
+    animation: batFloat 7s ease-in-out infinite;
+}
+
+.bat1 {
+    width: 60px;
+    top: 18%;
+    left: 12%;
+}
+
+.bat2 {
+    width: 35px;
+    top: 28%;
+    right: 19%;
+    animation-delay: -3s;
+}
+
+.bat3 {
+    width: 43px;
+    bottom: 19%;
+    right: 9%;
+    animation-delay: -5s;
+}
+
+@keyframes batFloat {
+    0%, 100% {
+        transform: translate(0,0) rotate(-8deg);
     }
 
-    /* Soft warm glow */
-    .glow {
-      position: absolute;
-      width: 400px;
-      height: 400px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background: rgba(251, 191, 36, .10);
-      filter: blur(70px);
-      z-index: 1;
+    50% {
+        transform: translate(18px,-12px) rotate(8deg);
+    }
+}
+
+/* FLOATING EMBERS */
+
+.particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #fb923c;
+    box-shadow: 0 0 9px #fb923c;
+    animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
     }
 
-    /* Falling leaves */
-    .leaves {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      overflow: hidden;
+    20%, 80% {
+        opacity: .7;
     }
 
-    .leaf {
-      position: absolute;
-      top: -15%;
-      opacity: .20;
-      font-size: clamp(16px, 2.3vw, 25px);
-      animation: fall linear infinite;
+    100% {
+        transform: translateY(-140px);
+        opacity: 0;
     }
+}
 
-    @keyframes fall {
-      0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-      }
+/* MAIN CONTENT */
 
-      50% {
-        transform: translateY(55vh) translateX(25px) rotate(180deg);
-      }
+.content {
+    position: relative;
+    z-index: 5;
+    width: min(94%, 950px);
+    padding: 8px;
+}
 
-      100% {
-        transform: translateY(115vh) translateX(-15px) rotate(360deg);
-      }
-    }
+/* HALLOWEEN LABEL */
 
-    .content {
-      position: relative;
-      z-index: 3;
-      width: min(95%, 950px);
-    }
+.kicker {
+    display: inline-block;
+    font-size: clamp(.65rem,1.8vw,.85rem);
+    font-weight: 800;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #fdba74;
+    margin-bottom: 9px;
+}
 
-    .kicker {
-      display: inline-block;
-      margin-bottom: 10px;
-      padding: 6px 15px;
-      border-radius: 999px;
+/* HEADLINE */
 
-      background: rgba(0, 0, 0, .28);
-      border: 1px solid rgba(255, 255, 255, .20);
+.headline {
+    font-size: clamp(1.6rem,5vw,3rem);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -.035em;
+    text-shadow: 0 5px 20px rgba(0,0,0,.7);
+    margin-bottom: 14px;
+}
 
-      font-size: clamp(.65rem, 1.8vw, .8rem);
-      font-weight: 800;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-      color: #fef3c7;
-
-      box-shadow: 0 8px 20px rgba(0, 0, 0, .20);
-    }
-
-    h1 {
-      font-size: clamp(2rem, 5.5vw, 3.25rem);
-      font-weight: 900;
-      line-height: 1.02;
-      margin-bottom: 15px;
-      text-shadow: 0 6px 22px rgba(0, 0, 0, .60);
-    }
-
-    .accent {
-      background: linear-gradient(
+.headline span {
+    background: linear-gradient(
         90deg,
-        #fde68a,
-        #fbbf24,
-        #fb923c
-      );
+        #fed7aa,
+        #fb923c,
+        #f97316,
+        #fed7aa
+    );
 
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* OFFER CARD */
+
+.card {
+    display: inline-block;
+    max-width: 100%;
+    padding: 14px 32px;
+    border-radius: 16px;
+
+    background: rgba(12,7,24,.78);
+    border: 1px solid rgba(251,146,60,.45);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.45),
+        0 0 35px rgba(249,115,22,.12);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* PRICE */
+
+.price {
+    font-size: clamp(2.5rem,7vw,4rem);
+    font-weight: 900;
+    line-height: 1;
+    color: #fb923c;
+
+    text-shadow:
+        0 0 20px rgba(249,115,22,.35);
+
+    margin-bottom: 5px;
+}
+
+.price-label {
+    font-size: clamp(.9rem,2.5vw,1.2rem);
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+/* SECONDARY COPY */
+
+.sub-line {
+    font-size: clamp(.75rem,1.9vw,.95rem);
+    font-weight: 600;
+    color: #e9d5ff;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+/* BOTTOM ACCENT */
+
+.bottom-glow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #f97316,
+        #a855f7,
+        #f97316,
+        transparent
+    );
+
+    box-shadow: 0 0 18px rgba(249,115,22,.5);
+    z-index: 6;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .moon {
+        width: 125px;
+        height: 125px;
+        right: -30px;
+        top: -40px;
+        opacity: .5;
+    }
+
+    .bat1 {
+        left: 3%;
+        width: 38px;
+    }
+
+    .bat2 {
+        right: 8%;
+        width: 27px;
+    }
+
+    .bat3 {
+        right: 4%;
+        width: 30px;
+    }
+
+    .headline {
+        margin-bottom: 12px;
     }
 
     .card {
-      display: inline-block;
-      max-width: 95%;
-      padding: 15px 28px;
-      border-radius: 16px;
-
-      background: rgba(0, 0, 0, .38);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-
-      border: 1px solid rgba(255, 255, 255, .17);
-
-      box-shadow:
-        0 12px 32px rgba(0, 0, 0, .35);
+        padding: 13px 22px;
     }
 
-    .main-line {
-      font-size: clamp(1rem, 2.6vw, 1.3rem);
-      line-height: 1.35;
-      margin-bottom: 6px;
+    .kicker {
+        letter-spacing: .14em;
     }
+}
 
-    .sub-line {
-      font-size: clamp(.78rem, 2vw, .95rem);
-      line-height: 1.4;
-      color: #fef3c7;
-    }
-
-    @media (max-width: 480px) {
-      .card {
-        padding: 13px 18px;
-      }
-
-      .kicker {
-        letter-spacing: .16em;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .bg {
+@media (prefers-reduced-motion: reduce) {
+    .moon,
+    .fog,
+    .bat,
+    .particle {
         animation: none;
-      }
-
-      .leaf {
-        animation: none;
-      }
     }
-  </style>
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="banner">
+<div class="halloween-banner">
 
-    <div class="bg"></div>
-    <div class="glow"></div>
+    <!-- MOON -->
+    <div class="moon"></div>
 
-    <div
-      class="leaves"
-      id="leaves"
-      aria-hidden="true">
-    </div>
+    <!-- BATS -->
+
+    <svg class="bat bat1" viewBox="0 0 100 50" aria-hidden="true">
+        <path d="M50 20 C40 5 28 7 15 0 L18 16 L0 12
+        C5 32 18 36 29 31 L35 44 L44 33
+        L50 38 L56 33 L65 44 L71 31
+        C82 36 95 32 100 12 L82 16 L85 0
+        C72 7 60 5 50 20Z"/>
+    </svg>
+
+    <svg class="bat bat2" viewBox="0 0 100 50" aria-hidden="true">
+        <path d="M50 20 C40 5 28 7 15 0 L18 16 L0 12
+        C5 32 18 36 29 31 L35 44 L44 33
+        L50 38 L56 33 L65 44 L71 31
+        C82 36 95 32 100 12 L82 16 L85 0
+        C72 7 60 5 50 20Z"/>
+    </svg>
+
+    <svg class="bat bat3" viewBox="0 0 100 50" aria-hidden="true">
+        <path d="M50 20 C40 5 28 7 15 0 L18 16 L0 12
+        C5 32 18 36 29 31 L35 44 L44 33
+        L50 38 L56 33 L65 44 L71 31
+        C82 36 95 32 100 12 L82 16 L85 0
+        C72 7 60 5 50 20Z"/>
+    </svg>
+
+    <!-- FOG -->
+    <div class="fog"></div>
+
+    <!-- PARTICLES -->
+    <div class="particles" id="particles"></div>
+
+    <!-- MAIN OFFER -->
 
     <div class="content">
 
-      <div class="kicker">
-        A Stronger Season Starts Now
-      </div>
-
-      <h1>
-        Fall Into a
-        <span class="accent">Stronger Routine.</span>
-      </h1>
-
-      <div class="card">
-
-        <div class="main-line">
-          The seasons change.
-          <strong>Your goals don't have to.</strong>
+        <div class="kicker">
+            FITCLUB HALLOWEEN SPECIAL
         </div>
 
-        <div class="sub-line">
-          🍂 Keep moving. Keep building. Keep getting stronger.
-        </div>
+        <h1 class="headline">
+            A SCARY
+            <span>GOOD DEAL!</span>
+        </h1>
 
-      </div>
+        <div class="card">
+
+            <div class="price">
+                $10.31
+            </div>
+
+            <div class="price-label">
+                TO JOIN FITCLUB
+            </div>
+
+            <div class="sub-line">
+                No tricks. Just a frighteningly good offer.
+            </div>
+
+        </div>
 
     </div>
 
-  </div>
+    <div class="bottom-glow"></div>
 
-  <script>
-    const container = document.getElementById('leaves');
+</div>
 
-    const icons = [
-      '🍂',
-      '🍁',
-      '🍃'
-    ];
+<script>
 
-    for (let i = 0; i < 42; i++) {
+(function() {
 
-      const leaf = document.createElement('span');
+    const container = document.getElementById('particles');
 
-      leaf.className = 'leaf';
+    if (!container) return;
 
-      leaf.textContent =
-        icons[Math.floor(Math.random() * icons.length)];
+    for (let i = 0; i < 35; i++) {
 
-      leaf.style.left =
-        Math.random() * 100 + '%';
+        const p = document.createElement('span');
 
-      leaf.style.animationDuration =
-        (9 + Math.random() * 11) + 's';
+        p.className = 'particle';
 
-      leaf.style.animationDelay =
-        (Math.random() * 10) + 's';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = (25 + Math.random() * 85) + '%';
 
-      leaf.style.fontSize =
-        (14 + Math.random() * 13) + 'px';
+        p.style.animationDuration =
+            (5 + Math.random() * 8) + 's';
 
-      container.appendChild(leaf);
+        p.style.animationDelay =
+            (-Math.random() * 12) + 's';
+
+        container.appendChild(p);
     }
-  </script>
+
+})();
+
+</script>
 
 </body>
 </html>
