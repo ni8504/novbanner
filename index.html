@@ -1,15 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitClub | November</title>
 
-<title>FitClub Halloween Special</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-
 * {
     margin: 0;
     padding: 0;
@@ -21,463 +20,379 @@ html, body {
     font-family: 'Montserrat', sans-serif;
 }
 
-/* MAIN BANNER */
-
-.halloween-banner {
+.november-banner {
     position: relative;
     width: 100%;
     height: 350px;
     overflow: hidden;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    color: white;
     isolation: isolate;
+    color: #fff;
+    padding: 12px;
 
     background:
         radial-gradient(
-            ellipse at 80% 20%,
-            rgba(249,115,22,.24),
+            ellipse at 12% 12%,
+            rgba(251,146,60,.30),
             transparent 40%
         ),
         radial-gradient(
-            ellipse at 15% 90%,
-            rgba(126,34,206,.35),
+            ellipse at 90% 85%,
+            rgba(190,65,35,.30),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 55% 100%,
+            rgba(245,158,11,.12),
             transparent 50%
         ),
         linear-gradient(
-            135deg,
-            #10091c 0%,
-            #1e1035 45%,
-            #080611 100%
+            125deg,
+            #241629 0%,
+            #432135 42%,
+            #713c2b 75%,
+            #38202c 100%
         );
 }
 
-/* GLOWING HALLOWEEN MOON */
+/* Warm atmospheric lighting */
 
-.moon {
+.november-banner::before {
+    content: "";
     position: absolute;
-    width: 185px;
-    height: 185px;
-    right: 8%;
-    top: -65px;
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 35%,
-            #ffdf9e,
-            #ff9f43 55%,
-            #ea580c 100%
-        );
-
-    box-shadow:
-        0 0 45px rgba(249,115,22,.45),
-        0 0 100px rgba(249,115,22,.22),
-        0 0 170px rgba(249,115,22,.12);
-
-    opacity: .85;
+    inset: -30%;
     z-index: 0;
-
-    animation: moonPulse 6s ease-in-out infinite;
-}
-
-@keyframes moonPulse {
-    0%, 100% {
-        box-shadow:
-            0 0 45px rgba(249,115,22,.45),
-            0 0 100px rgba(249,115,22,.22);
-    }
-
-    50% {
-        box-shadow:
-            0 0 65px rgba(249,115,22,.60),
-            0 0 130px rgba(249,115,22,.30);
-    }
-}
-
-/* FOG */
-
-.fog {
-    position: absolute;
-    width: 200%;
-    height: 170px;
-    left: -50%;
-    bottom: -75px;
     pointer-events: none;
-    z-index: 1;
 
     background:
         radial-gradient(
-            ellipse at 25% 50%,
-            rgba(139,92,246,.25),
-            transparent 55%
+            ellipse at 30% 30%,
+            rgba(251,191,36,.12),
+            transparent 45%
         ),
         radial-gradient(
-            ellipse at 75% 40%,
-            rgba(255,255,255,.12),
-            transparent 55%
+            ellipse at 75% 70%,
+            rgba(249,115,22,.14),
+            transparent 45%
         );
 
-    filter: blur(25px);
-    animation: fogMove 16s ease-in-out infinite alternate;
+    animation: atmosphere 18s ease-in-out infinite alternate;
 }
 
-@keyframes fogMove {
-    from { transform: translateX(-5%); }
-    to { transform: translateX(15%); }
+@keyframes atmosphere {
+    from {
+        transform: translate(-3%, 2%) scale(1);
+    }
+    to {
+        transform: translate(3%, -2%) scale(1.08);
+    }
 }
 
-/* ANIMATED BATS */
+/* Decorative autumn circles */
 
-.bat {
+.glow {
     position: absolute;
-    z-index: 1;
-    fill: #05030a;
-    opacity: .7;
+    border-radius: 50%;
     pointer-events: none;
-    animation: batFloat 7s ease-in-out infinite;
+    z-index: 0;
 }
 
-.bat1 {
-    width: 60px;
-    top: 18%;
-    left: 12%;
+.glow-one {
+    width: 240px;
+    height: 240px;
+    top: -140px;
+    right: 7%;
+    background: rgba(251,191,36,.16);
+    filter: blur(35px);
 }
 
-.bat2 {
-    width: 35px;
-    top: 28%;
-    right: 19%;
-    animation-delay: -3s;
+.glow-two {
+    width: 280px;
+    height: 280px;
+    bottom: -190px;
+    left: 4%;
+    background: rgba(249,115,22,.18);
+    filter: blur(45px);
 }
 
-.bat3 {
-    width: 43px;
-    bottom: 19%;
-    right: 9%;
-    animation-delay: -5s;
-}
+/* Falling autumn leaves */
 
-@keyframes batFloat {
-    0%, 100% {
-        transform: translate(0,0) rotate(-8deg);
-    }
-
-    50% {
-        transform: translate(18px,-12px) rotate(8deg);
-    }
-}
-
-/* FLOATING EMBERS */
-
-.particles {
+.leaves {
     position: absolute;
     inset: 0;
+    overflow: hidden;
     pointer-events: none;
     z-index: 1;
 }
 
-.particle {
+.leaf {
     position: absolute;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: #fb923c;
-    box-shadow: 0 0 9px #fb923c;
-    animation: particleFloat linear infinite;
+    top: -45px;
+    opacity: .30;
+    font-size: 22px;
+    line-height: 1;
+    will-change: transform;
+    animation: leafFall linear infinite;
 }
 
-@keyframes particleFloat {
+@keyframes leafFall {
     0% {
-        transform: translateY(0);
-        opacity: 0;
+        transform:
+            translate3d(0, -20px, 0)
+            rotate(0deg);
     }
-
-    20%, 80% {
-        opacity: .7;
+    50% {
+        transform:
+            translate3d(35px, 190px, 0)
+            rotate(160deg);
     }
-
     100% {
-        transform: translateY(-140px);
-        opacity: 0;
+        transform:
+            translate3d(-20px, 430px, 0)
+            rotate(360deg);
     }
 }
 
-/* MAIN CONTENT */
+/* Main content */
 
 .content {
     position: relative;
-    z-index: 5;
-    width: min(94%, 950px);
-    padding: 8px;
+    z-index: 3;
+    width: min(96%, 950px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-/* HALLOWEEN LABEL */
 
 .kicker {
     display: inline-block;
-    font-size: clamp(.65rem,1.8vw,.85rem);
+    margin-bottom: 12px;
+    padding: 7px 17px;
+    border-radius: 100px;
+
+    background: rgba(255,255,255,.09);
+    border: 1px solid rgba(253,186,116,.32);
+
+    color: #fed7aa;
+    font-size: clamp(.62rem,1.7vw,.8rem);
     font-weight: 800;
     letter-spacing: .22em;
     text-transform: uppercase;
-    color: #fdba74;
-    margin-bottom: 9px;
 }
-
-/* HEADLINE */
 
 .headline {
-    font-size: clamp(1.6rem,5vw,3rem);
+    font-size: clamp(1.9rem,5.5vw,3.6rem);
     font-weight: 900;
-    line-height: 1.08;
-    letter-spacing: -.035em;
-    text-shadow: 0 5px 20px rgba(0,0,0,.7);
-    margin-bottom: 14px;
+    letter-spacing: -.04em;
+    line-height: 1.06;
+    margin-bottom: 17px;
+
+    text-shadow: 0 6px 25px rgba(0,0,0,.45);
 }
 
-.headline span {
+.headline .accent {
+    display: block;
+
     background: linear-gradient(
         90deg,
-        #fed7aa,
-        #fb923c,
-        #f97316,
-        #fed7aa
+        #fde68a 0%,
+        #fbbf24 45%,
+        #fb923c 100%
     );
 
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+
+    filter: drop-shadow(
+        0 3px 12px rgba(251,146,60,.18)
+    );
 }
 
-/* OFFER CARD */
+/* Glass messaging card */
 
 .card {
     display: inline-block;
     max-width: 100%;
-    padding: 14px 32px;
-    border-radius: 16px;
+    padding: 15px 30px;
+    border-radius: 17px;
 
-    background: rgba(12,7,24,.78);
-    border: 1px solid rgba(251,146,60,.45);
-
-    box-shadow:
-        0 12px 35px rgba(0,0,0,.45),
-        0 0 35px rgba(249,115,22,.12);
+    background: rgba(19,12,25,.56);
+    border: 1px solid rgba(253,186,116,.24);
 
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.30),
+        0 0 30px rgba(251,146,60,.05);
 }
 
-/* PRICE */
-
-.price {
-    font-size: clamp(2.5rem,7vw,4rem);
-    font-weight: 900;
-    line-height: 1;
-    color: #fb923c;
-
-    text-shadow:
-        0 0 20px rgba(249,115,22,.35);
-
-    margin-bottom: 5px;
-}
-
-.price-label {
-    font-size: clamp(.9rem,2.5vw,1.2rem);
+.main-line {
+    font-size: clamp(1rem,2.6vw,1.3rem);
     font-weight: 800;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: #ffffff;
+    line-height: 1.35;
+    color: #fff;
 }
 
-/* SECONDARY COPY */
+.main-line strong {
+    color: #fbbf24;
+}
 
 .sub-line {
-    font-size: clamp(.75rem,1.9vw,.95rem);
-    font-weight: 600;
-    color: #e9d5ff;
-    margin-top: 10px;
+    margin-top: 7px;
+    font-size: clamp(.78rem,1.9vw,.98rem);
+    font-weight: 500;
     line-height: 1.4;
+    color: #f3d8cc;
 }
 
-/* BOTTOM ACCENT */
+/* Bottom decorative line */
 
-.bottom-glow {
+.bottom-accent {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 3px;
+    z-index: 4;
 
     background: linear-gradient(
         90deg,
         transparent,
-        #f97316,
-        #a855f7,
-        #f97316,
+        #fbbf24,
+        #fb923c,
+        #fbbf24,
         transparent
     );
 
-    box-shadow: 0 0 18px rgba(249,115,22,.5);
-    z-index: 6;
+    box-shadow: 0 0 18px rgba(251,146,60,.35);
 }
 
-/* MOBILE */
+/* Mobile adjustments */
 
 @media (max-width: 600px) {
-
-    .moon {
-        width: 125px;
-        height: 125px;
-        right: -30px;
-        top: -40px;
-        opacity: .5;
-    }
-
-    .bat1 {
-        left: 3%;
-        width: 38px;
-    }
-
-    .bat2 {
-        right: 8%;
-        width: 27px;
-    }
-
-    .bat3 {
-        right: 4%;
-        width: 30px;
-    }
-
     .headline {
-        margin-bottom: 12px;
-    }
-
-    .card {
-        padding: 13px 22px;
+        font-size: clamp(1.75rem,7.3vw,2.5rem);
+        margin-bottom: 13px;
     }
 
     .kicker {
-        letter-spacing: .14em;
+        letter-spacing: .13em;
+        margin-bottom: 10px;
+    }
+
+    .card {
+        padding: 13px 16px;
+    }
+
+    .main-line {
+        font-size: clamp(.94rem,3.8vw,1.1rem);
+    }
+
+    .sub-line {
+        font-size: clamp(.74rem,3vw,.9rem);
+    }
+
+    .leaf {
+        opacity: .20;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .moon,
-    .fog,
-    .bat,
-    .particle {
+    .november-banner::before,
+    .leaf {
         animation: none;
     }
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="halloween-banner">
+<div class="november-banner">
 
-    <!-- MOON -->
-    <div class="moon"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
 
-    <!-- BATS -->
-
-    <svg class="bat bat1" viewBox="0 0 100 50" aria-hidden="true">
-        <path d="M50 20 C40 5 28 7 15 0 L18 16 L0 12
-        C5 32 18 36 29 31 L35 44 L44 33
-        L50 38 L56 33 L65 44 L71 31
-        C82 36 95 32 100 12 L82 16 L85 0
-        C72 7 60 5 50 20Z"/>
-    </svg>
-
-    <svg class="bat bat2" viewBox="0 0 100 50" aria-hidden="true">
-        <path d="M50 20 C40 5 28 7 15 0 L18 16 L0 12
-        C5 32 18 36 29 31 L35 44 L44 33
-        L50 38 L56 33 L65 44 L71 31
-        C82 36 95 32 100 12 L82 16 L85 0
-        C72 7 60 5 50 20Z"/>
-    </svg>
-
-    <svg class="bat bat3" viewBox="0 0 100 50" aria-hidden="true">
-        <path d="M50 20 C40 5 28 7 15 0 L18 16 L0 12
-        C5 32 18 36 29 31 L35 44 L44 33
-        L50 38 L56 33 L65 44 L71 31
-        C82 36 95 32 100 12 L82 16 L85 0
-        C72 7 60 5 50 20Z"/>
-    </svg>
-
-    <!-- FOG -->
-    <div class="fog"></div>
-
-    <!-- PARTICLES -->
-    <div class="particles" id="particles"></div>
-
-    <!-- MAIN OFFER -->
+    <div class="leaves" id="leaves" aria-hidden="true"></div>
 
     <div class="content">
 
         <div class="kicker">
-            FITCLUB HALLOWEEN SPECIAL
+            Your Head Start Starts Here
         </div>
 
         <h1 class="headline">
-            A SCARY
-            <span>GOOD DEAL!</span>
+            DON'T WAIT FOR
+            <span class="accent">JANUARY.</span>
         </h1>
 
         <div class="card">
 
-            <div class="price">
-                $10.31
-            </div>
-
-            <div class="price-label">
-                TO JOIN FITCLUB
+            <div class="main-line">
+                Start Strong Now.
+                <strong>Finish the Year Stronger.</strong>
             </div>
 
             <div class="sub-line">
-                No tricks. Just a frighteningly good offer.
+                Build the habit today. Thank yourself tomorrow.
             </div>
 
         </div>
 
     </div>
 
-    <div class="bottom-glow"></div>
+    <div class="bottom-accent"></div>
 
 </div>
 
 <script>
-
 (function() {
 
-    const container = document.getElementById('particles');
+    const container = document.getElementById('leaves');
 
     if (!container) return;
 
-    for (let i = 0; i < 35; i++) {
+    const icons = ['🍂', '🍁', '🍃'];
 
-        const p = document.createElement('span');
+    const reduceMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+    ).matches;
 
-        p.className = 'particle';
+    const count = reduceMotion ? 12 : 32;
 
-        p.style.left = Math.random() * 100 + '%';
-        p.style.top = (25 + Math.random() * 85) + '%';
+    for (let i = 0; i < count; i++) {
 
-        p.style.animationDuration =
-            (5 + Math.random() * 8) + 's';
+        const leaf = document.createElement('span');
 
-        p.style.animationDelay =
-            (-Math.random() * 12) + 's';
+        leaf.className = 'leaf';
 
-        container.appendChild(p);
+        leaf.textContent =
+            icons[Math.floor(Math.random() * icons.length)];
+
+        leaf.style.left = Math.random() * 100 + '%';
+
+        leaf.style.fontSize =
+            (14 + Math.random() * 14) + 'px';
+
+        leaf.style.animationDuration =
+            (9 + Math.random() * 12) + 's';
+
+        leaf.style.animationDelay =
+            (-Math.random() * 20) + 's';
+
+        if (reduceMotion) {
+            leaf.style.top = Math.random() * 90 + '%';
+        }
+
+        container.appendChild(leaf);
     }
 
 })();
-
 </script>
 
 </body>
