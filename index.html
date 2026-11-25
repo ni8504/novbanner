@@ -4,11 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FitClub | November</title>
+<title>FitClub | Black Friday Sale</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +21,9 @@ html, body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.november-banner {
+/* MAIN BANNER */
+
+.black-friday-banner {
     position: relative;
     width: 100%;
     height: 350px;
@@ -30,369 +33,649 @@ html, body {
     justify-content: center;
     text-align: center;
     isolation: isolate;
-    color: #fff;
+    color: #ffffff;
     padding: 12px;
 
     background:
         radial-gradient(
-            ellipse at 12% 12%,
-            rgba(251,146,60,.30),
+            ellipse at 15% 10%,
+            rgba(212,175,55,.20),
             transparent 40%
         ),
         radial-gradient(
-            ellipse at 90% 85%,
-            rgba(190,65,35,.30),
-            transparent 45%
-        ),
-        radial-gradient(
-            ellipse at 55% 100%,
-            rgba(245,158,11,.12),
-            transparent 50%
+            ellipse at 85% 90%,
+            rgba(212,175,55,.16),
+            transparent 40%
         ),
         linear-gradient(
-            125deg,
-            #241629 0%,
-            #432135 42%,
-            #713c2b 75%,
-            #38202c 100%
+            135deg,
+            #050505 0%,
+            #171717 45%,
+            #080808 75%,
+            #000000 100%
         );
 }
 
-/* Warm atmospheric lighting */
+/* ANIMATED METALLIC LIGHT */
 
-.november-banner::before {
+.black-friday-banner::before {
     content: "";
     position: absolute;
-    inset: -30%;
+    inset: -50%;
     z-index: 0;
     pointer-events: none;
 
-    background:
-        radial-gradient(
-            ellipse at 30% 30%,
-            rgba(251,191,36,.12),
-            transparent 45%
-        ),
-        radial-gradient(
-            ellipse at 75% 70%,
-            rgba(249,115,22,.14),
-            transparent 45%
-        );
+    background: linear-gradient(
+        115deg,
+        transparent 35%,
+        rgba(255,215,100,.025) 42%,
+        rgba(255,215,100,.10) 50%,
+        rgba(255,215,100,.025) 58%,
+        transparent 65%
+    );
 
-    animation: atmosphere 18s ease-in-out infinite alternate;
+    animation: lightSweep 9s ease-in-out infinite;
 }
 
-@keyframes atmosphere {
-    from {
-        transform: translate(-3%, 2%) scale(1);
+@keyframes lightSweep {
+    0%, 100% {
+        transform: translateX(-30%);
     }
-    to {
-        transform: translate(3%, -2%) scale(1.08);
+    50% {
+        transform: translateX(30%);
     }
 }
 
-/* Decorative autumn circles */
+/* DECORATIVE GOLD LINES */
 
-.glow {
+.gold-line {
     position: absolute;
-    border-radius: 50%;
+    width: 550px;
+    height: 1px;
     pointer-events: none;
     z-index: 0;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(212,175,55,.65),
+        transparent
+    );
 }
 
-.glow-one {
-    width: 240px;
-    height: 240px;
-    top: -140px;
-    right: 7%;
-    background: rgba(251,191,36,.16);
-    filter: blur(35px);
+.line-one {
+    top: 12%;
+    left: -180px;
+    transform: rotate(-35deg);
 }
 
-.glow-two {
-    width: 280px;
-    height: 280px;
-    bottom: -190px;
-    left: 4%;
-    background: rgba(249,115,22,.18);
-    filter: blur(45px);
+.line-two {
+    top: 25%;
+    left: -130px;
+    transform: rotate(-35deg);
 }
 
-/* Falling autumn leaves */
+.line-three {
+    bottom: 12%;
+    right: -180px;
+    transform: rotate(-35deg);
+}
 
-.leaves {
+.line-four {
+    bottom: 25%;
+    right: -130px;
+    transform: rotate(-35deg);
+}
+
+/* FLOATING GOLD PARTICLES */
+
+.particles {
     position: absolute;
     inset: 0;
-    overflow: hidden;
     pointer-events: none;
+    overflow: hidden;
     z-index: 1;
 }
 
-.leaf {
+.particle {
     position: absolute;
-    top: -45px;
-    opacity: .30;
-    font-size: 22px;
-    line-height: 1;
-    will-change: transform;
-    animation: leafFall linear infinite;
+    bottom: -15px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+
+    background: #eac65b;
+    box-shadow: 0 0 8px rgba(234,198,91,.8);
+
+    animation: floatUp linear infinite;
 }
 
-@keyframes leafFall {
+@keyframes floatUp {
     0% {
-        transform:
-            translate3d(0, -20px, 0)
-            rotate(0deg);
+        transform: translate3d(0,0,0);
+        opacity: 0;
     }
-    50% {
-        transform:
-            translate3d(35px, 190px, 0)
-            rotate(160deg);
+
+    15% {
+        opacity: .65;
     }
+
+    85% {
+        opacity: .45;
+    }
+
     100% {
-        transform:
-            translate3d(-20px, 430px, 0)
-            rotate(360deg);
+        transform: translate3d(30px,-390px,0);
+        opacity: 0;
     }
 }
 
-/* Main content */
+/* MAIN CONTENT */
 
 .content {
     position: relative;
     z-index: 3;
-    width: min(96%, 950px);
+    width: min(96%,1000px);
+
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* BEST DEAL LABEL */
+
 .kicker {
     display: inline-block;
-    margin-bottom: 12px;
-    padding: 7px 17px;
-    border-radius: 100px;
-
-    background: rgba(255,255,255,.09);
-    border: 1px solid rgba(253,186,116,.32);
-
-    color: #fed7aa;
-    font-size: clamp(.62rem,1.7vw,.8rem);
-    font-weight: 800;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-}
-
-.headline {
-    font-size: clamp(1.9rem,5.5vw,3.6rem);
-    font-weight: 900;
-    letter-spacing: -.04em;
-    line-height: 1.06;
-    margin-bottom: 17px;
-
-    text-shadow: 0 6px 25px rgba(0,0,0,.45);
-}
-
-.headline .accent {
-    display: block;
+    padding: 6px 17px;
+    margin-bottom: 7px;
+    border-radius: 4px;
 
     background: linear-gradient(
-        90deg,
-        #fde68a 0%,
-        #fbbf24 45%,
-        #fb923c 100%
+        110deg,
+        #a67c21,
+        #f8df88,
+        #c69b35
+    );
+
+    color: #080808;
+    font-size: clamp(.65rem,1.7vw,.85rem);
+    font-weight: 900;
+    letter-spacing: .20em;
+    text-transform: uppercase;
+
+    box-shadow: 0 0 22px rgba(212,175,55,.18);
+}
+
+/* BLACK FRIDAY HEADLINE */
+
+.headline {
+    font-size: clamp(1.9rem,5.5vw,3.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -.035em;
+    margin-bottom: 8px;
+
+    text-shadow: 0 5px 25px rgba(0,0,0,.65);
+}
+
+.headline span {
+    color: #f5d675;
+}
+
+/* OFFER */
+
+.offer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: clamp(3.6rem,10vw,5.8rem);
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -.07em;
+
+    color: #f5d675;
+
+    background: linear-gradient(
+        110deg,
+        #b58a2b 0%,
+        #ffe9a3 35%,
+        #f5d675 55%,
+        #c99b32 100%
     );
 
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    -webkit-text-fill-color: transparent;
 
     filter: drop-shadow(
-        0 3px 12px rgba(251,146,60,.18)
+        0 4px 15px rgba(212,175,55,.25)
     );
 }
 
-/* Glass messaging card */
+.price-label {
+    font-size: clamp(1.2rem,3.5vw,2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    text-align: left;
+    text-transform: uppercase;
+}
 
-.card {
+/* MONTH-TO-MONTH OFFER */
+
+.agreement {
     display: inline-block;
-    max-width: 100%;
-    padding: 15px 30px;
-    border-radius: 17px;
+    padding: 8px 22px;
+    margin-bottom: 12px;
+    border-radius: 8px;
 
-    background: rgba(19,12,25,.56);
-    border: 1px solid rgba(253,186,116,.24);
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255,255,255,.055);
+    border: 1px solid rgba(212,175,55,.50);
 
     box-shadow:
-        0 12px 35px rgba(0,0,0,.30),
-        0 0 30px rgba(251,146,60,.05);
+        0 5px 20px rgba(0,0,0,.35),
+        inset 0 0 18px rgba(212,175,55,.04);
 }
 
-.main-line {
-    font-size: clamp(1rem,2.6vw,1.3rem);
+.agreement-main {
+    color: #ffe6a0;
+    font-size: clamp(.95rem,2.7vw,1.35rem);
+    font-weight: 900;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.agreement-sub {
+    margin-top: 3px;
+    color: #e5e5e5;
+    font-size: clamp(.68rem,1.7vw,.85rem);
+    font-weight: 600;
+}
+
+/* COUNTDOWN */
+
+.countdown-heading {
+    margin-bottom: 7px;
+
+    color: #ffffff;
+    font-size: clamp(.62rem,1.6vw,.78rem);
     font-weight: 800;
-    line-height: 1.35;
-    color: #fff;
+    letter-spacing: .15em;
+    text-transform: uppercase;
 }
 
-.main-line strong {
-    color: #fbbf24;
+.countdown-heading strong {
+    color: #f5d675;
 }
 
-.sub-line {
-    margin-top: 7px;
-    font-size: clamp(.78rem,1.9vw,.98rem);
-    font-weight: 500;
-    line-height: 1.4;
-    color: #f3d8cc;
+.countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
 }
 
-/* Bottom decorative line */
+.time-box {
+    min-width: 57px;
+    padding: 5px 8px;
+    border-radius: 6px;
 
-.bottom-accent {
+    background: linear-gradient(
+        180deg,
+        #292929,
+        #111111
+    );
+
+    border: 1px solid rgba(212,175,55,.35);
+
+    box-shadow: 0 4px 12px rgba(0,0,0,.4);
+}
+
+.time-number {
+    display: block;
+
+    font-size: clamp(1.2rem,3.5vw,1.7rem);
+    font-weight: 900;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+
+    color: #f8dc86;
+}
+
+.time-label {
+    display: block;
+    margin-top: 3px;
+
+    color: #cccccc;
+    font-size: .52rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.separator {
+    color: #d4af37;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+/* EXPIRED MESSAGE */
+
+.expired {
+    display: none;
+    color: #f5d675;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.black-friday-banner.sale-ended .offer,
+.black-friday-banner.sale-ended .agreement,
+.black-friday-banner.sale-ended .countdown,
+.black-friday-banner.sale-ended .countdown-heading,
+.black-friday-banner.sale-ended .kicker {
+    display: none;
+}
+
+.black-friday-banner.sale-ended .expired {
+    display: block;
+}
+
+/* GOLD BORDERS */
+
+.top-border,
+.bottom-border {
     position: absolute;
-    bottom: 0;
     left: 0;
     width: 100%;
     height: 3px;
-    z-index: 4;
+    z-index: 5;
 
     background: linear-gradient(
         90deg,
         transparent,
-        #fbbf24,
-        #fb923c,
-        #fbbf24,
+        #a67c21,
+        #ffe6a0,
+        #d4af37,
+        #ffe6a0,
+        #a67c21,
         transparent
     );
 
-    box-shadow: 0 0 18px rgba(251,146,60,.35);
+    box-shadow: 0 0 15px rgba(212,175,55,.4);
 }
 
-/* Mobile adjustments */
+.top-border {
+    top: 0;
+}
+
+.bottom-border {
+    bottom: 0;
+}
+
+/* MOBILE */
 
 @media (max-width: 600px) {
-    .headline {
-        font-size: clamp(1.75rem,7.3vw,2.5rem);
-        margin-bottom: 13px;
-    }
 
-    .kicker {
-        letter-spacing: .13em;
+    .headline {
+        font-size: clamp(1.8rem,8vw,2.6rem);
         margin-bottom: 10px;
     }
 
-    .card {
-        padding: 13px 16px;
+    .kicker {
+        letter-spacing: .12em;
+        padding: 6px 12px;
     }
 
-    .main-line {
-        font-size: clamp(.94rem,3.8vw,1.1rem);
+    .offer {
+        gap: 10px;
+        margin-bottom: 12px;
     }
 
-    .sub-line {
-        font-size: clamp(.74rem,3vw,.9rem);
+    .price {
+        font-size: clamp(3.8rem,15vw,5rem);
     }
 
-    .leaf {
-        opacity: .20;
+    .price-label {
+        font-size: clamp(1.1rem,5vw,1.5rem);
+    }
+
+    .agreement {
+        padding: 9px 15px;
+        margin-bottom: 14px;
+    }
+
+    .agreement-main {
+        font-size: clamp(.85rem,4vw,1.15rem);
+    }
+
+    .time-box {
+        min-width: 48px;
+        padding: 6px;
+    }
+
+    .countdown {
+        gap: 5px;
+    }
+
+    .gold-line {
+        opacity: .45;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .november-banner::before,
-    .leaf {
+
+    .black-friday-banner::before {
         animation: none;
     }
+
+    .particle {
+        display: none;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="november-banner">
+<div class="black-friday-banner" id="blackFridayBanner">
 
-    <div class="glow glow-one"></div>
-    <div class="glow glow-two"></div>
+    <div class="top-border"></div>
+    <div class="bottom-border"></div>
 
-    <div class="leaves" id="leaves" aria-hidden="true"></div>
+    <div class="gold-line line-one"></div>
+    <div class="gold-line line-two"></div>
+    <div class="gold-line line-three"></div>
+    <div class="gold-line line-four"></div>
+
+    <div class="particles" id="particles" aria-hidden="true"></div>
 
     <div class="content">
 
         <div class="kicker">
-            Your Head Start Starts Here
+            Best Deal of the Year
         </div>
 
         <h1 class="headline">
-            DON'T WAIT FOR
-            <span class="accent">JANUARY.</span>
+            BLACK <span>FRIDAY</span>
         </h1>
 
-        <div class="card">
+        <div class="offer">
 
-            <div class="main-line">
-                Start Strong Now.
-                <strong>Finish the Year Stronger.</strong>
+            <div class="price">
+                $5
             </div>
 
-            <div class="sub-line">
-                Build the habit today. Thank yourself tomorrow.
+            <div class="price-label">
+                TO JOIN<br>
+                FITCLUB
             </div>
 
+        </div>
+
+        <div class="agreement">
+
+            <div class="agreement-main">
+                Month-to-Month Agreement
+            </div>
+
+            <div class="agreement-sub">
+                No Long-Term Commitment.
+            </div>
+
+        </div>
+
+        <div class="countdown-heading">
+            Sale Ends <strong>Monday, November 30th</strong>
+        </div>
+
+        <div class="countdown" id="countdown">
+
+            <div class="time-box">
+                <span class="time-number" id="days">00</span>
+                <span class="time-label">Days</span>
+            </div>
+
+            <div class="separator">:</div>
+
+            <div class="time-box">
+                <span class="time-number" id="hours">00</span>
+                <span class="time-label">Hours</span>
+            </div>
+
+            <div class="separator">:</div>
+
+            <div class="time-box">
+                <span class="time-number" id="minutes">00</span>
+                <span class="time-label">Minutes</span>
+            </div>
+
+            <div class="separator">:</div>
+
+            <div class="time-box">
+                <span class="time-number" id="seconds">00</span>
+                <span class="time-label">Seconds</span>
+            </div>
+
+        </div>
+
+        <div class="expired" id="expired">
+            Our Black Friday Sale Has Ended.
         </div>
 
     </div>
 
-    <div class="bottom-accent"></div>
-
 </div>
 
 <script>
+
 (function() {
 
-    const container = document.getElementById('leaves');
+    /* GOLD PARTICLES */
 
-    if (!container) return;
+    const container = document.getElementById('particles');
 
-    const icons = ['🍂', '🍁', '🍃'];
+    for (let i = 0; i < 45; i++) {
 
-    const reduceMotion = window.matchMedia(
-        '(prefers-reduced-motion: reduce)'
-    ).matches;
+        const particle = document.createElement('span');
 
-    const count = reduceMotion ? 12 : 32;
+        particle.className = 'particle';
 
-    for (let i = 0; i < count; i++) {
+        particle.style.left =
+            Math.random() * 100 + '%';
 
-        const leaf = document.createElement('span');
+        particle.style.animationDuration =
+            (7 + Math.random() * 12) + 's';
 
-        leaf.className = 'leaf';
+        particle.style.animationDelay =
+            (-Math.random() * 18) + 's';
 
-        leaf.textContent =
-            icons[Math.floor(Math.random() * icons.length)];
+        const size = 2 + Math.random() * 3;
 
-        leaf.style.left = Math.random() * 100 + '%';
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
 
-        leaf.style.fontSize =
-            (14 + Math.random() * 14) + 'px';
+        container.appendChild(particle);
+    }
 
-        leaf.style.animationDuration =
-            (9 + Math.random() * 12) + 's';
+    /* COUNTDOWN TIMER */
 
-        leaf.style.animationDelay =
-            (-Math.random() * 20) + 's';
+    // Midnight Central Standard Time
+    // Immediately following Monday, November 30, 2026
 
-        if (reduceMotion) {
-            leaf.style.top = Math.random() * 90 + '%';
+    const endDate = new Date(
+        '2026-12-01T00:00:00-06:00'
+    ).getTime();
+
+    const banner = document.getElementById('blackFridayBanner');
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    function pad(number) {
+        return String(number).padStart(2, '0');
+    }
+
+    function updateCountdown() {
+
+        const now = Date.now();
+        const remaining = endDate - now;
+
+        if (remaining <= 0) {
+
+            banner.classList.add('sale-ended');
+
+            daysEl.textContent = '00';
+            hoursEl.textContent = '00';
+            minutesEl.textContent = '00';
+            secondsEl.textContent = '00';
+
+            return false;
         }
 
-        container.appendChild(leaf);
+        const days = Math.floor(
+            remaining / 86400000
+        );
+
+        const hours = Math.floor(
+            (remaining % 86400000) / 3600000
+        );
+
+        const minutes = Math.floor(
+            (remaining % 3600000) / 60000
+        );
+
+        const seconds = Math.floor(
+            (remaining % 60000) / 1000
+        );
+
+        daysEl.textContent = pad(days);
+        hoursEl.textContent = pad(hours);
+        minutesEl.textContent = pad(minutes);
+        secondsEl.textContent = pad(seconds);
+
+        return true;
+    }
+
+    if (updateCountdown()) {
+
+        const timer = setInterval(function() {
+
+            if (!updateCountdown()) {
+                clearInterval(timer);
+            }
+
+        }, 1000);
     }
 
 })();
+
 </script>
 
 </body>
